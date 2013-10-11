@@ -1,0 +1,3 @@
+                        <%@ page contentType="text/html; charset=utf-8" %>
+                        <struts:if test="isDummy"><struts:property value="namn"/></struts:if>
+                        <struts:else><struts:url var="url" action="SpelareStatistik"><struts:param name="spelareId" value="id"/><struts:param name="sasongId" value="sasongId"/></struts:url><struts:a href="%{url}"><struts:property value="namn"/></struts:a></struts:else>

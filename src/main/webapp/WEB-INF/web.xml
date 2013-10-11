@@ -1,0 +1,69 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+
+    <display-name>Dromelvan</display-name>
+
+    <context-param>
+        <param-name>wurfl</param-name>
+        <param-value>classpath:/wurfl.zip</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>applikation.version</param-name>
+        <param-value>${project.version}</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>applikation.datum</param-name>
+        <param-value>${project.timestamp}</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>applikation.default.sasong_id</param-name>
+        <param-value>11</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>applikation.default.tavling_id</param-name>
+        <param-value>20</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>applikation.default.de_tavling_id</param-name>
+        <param-value>21</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>applikation.transfer_budget</param-name>
+        <param-value>500</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>applikation.minsta_bud</param-name>
+        <param-value>5</param-value>
+    </context-param>
+
+    <filter>
+        <filter-name>struts2</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.FilterDispatcher</filter-class>
+        <init-param>
+            <param-name>actionPackages</param-name>
+            <param-value>org.dromelvan.struts2</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>struts2</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <listener>
+        <listener-class>
+            net.sourceforge.wurfl.core.web.WURFLServletContextListener
+        </listener-class>
+    </listener>
+
+</web-app>

@@ -1,0 +1,506 @@
+/* Globalt ------------------------------------------------------------------ */
+
+body {
+    background-color: white;
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+}
+
+body a:link,body a:visited,body a:hover {
+    color: black;
+    font-weight: normal;
+    text-decoration: underline
+}
+
+/* Header ------------------------------------------------------------------- */
+
+#header {
+    background-image: url(logo.jpg);
+    width: 100%;
+    height: 175px;
+    margin: -5px;
+}
+
+#header h1 {
+    /* Rubrikerna behöver inte visas på skärmen då stylen är aktiverad. Det
+       räcker med loggan */
+    display: none;
+}
+
+/* Sidebaren allmänt -------------------------------------------------------- */
+
+#sidebar h2, #huvudmenu h2 {
+    display: none;
+}
+
+#sidebar h3, #huvudmenu h3 {
+    display: none;
+}
+
+#sidebar .administration_menu {
+    display: none;    
+}
+
+#sidebar .sasong_menu {
+    display: none;    
+}
+
+#sidebar .big_menu {
+    display: none;
+}
+
+#sidebar h4, #huvudmenu h4 {
+    font-size: 50px;
+    height: 70px;
+    background-color: #cccccc;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-top: 10px;
+    
+    border-top-width: 1px;
+    border-top-color:black;
+    border-top-style: solid;
+    
+    border-bottom-width: 1px;
+    border-bottom-color:black;
+    border-bottom-style: solid;    
+}
+
+#sidebar ul, #huvudmenu ul {
+    list-style:none;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+}
+
+#sidebar li, #huvudmenu li {
+    margin-top: 10px;        
+    margin-bottom: 10px;    
+}
+
+#sidebar #menu {
+    display: none;
+}
+
+#search {
+    display: none;
+}
+
+#validering {
+    display: none;
+}
+
+/* Innehållsdelen ----------------------------------------------------------- */
+
+
+#content h2 {
+    font-size: 50px;
+    height: 70px;
+    background-color: #cccccc;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-top: 10px;
+    
+    border-top-width: 1px;
+    border-top-color:black;
+    border-top-style: solid;
+    
+    border-bottom-width: 1px;
+    border-bottom-color:black;
+    border-bottom-style: solid;    
+    
+}
+
+
+#content h3 {
+    font-weight: bold;
+
+    border-bottom-width: 1px;
+    border-bottom-color:black;
+    border-bottom-style: solid;
+
+    margin-top: 40px;
+}
+
+#content h3.match_rubrik {
+    display: none;
+}
+
+#content img.kort {
+    height: 28px;
+    width: 28px;    
+}
+
+#content img.mom,
+#content img.delad_mom,
+#content img.assist,
+#content img.byte {
+    height: 30px;
+    width: 30px;    
+}
+
+#content .finstilt {
+    font-size: 20px;
+    font-style: italic;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0px;
+}
+
+/* Tables ---------------------------- */
+
+table {
+    width: 99%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+th {
+    background-color: #cccccc;
+}
+
+th a:link,
+th a:visited {
+    font-weight: bold;
+}
+
+tr {
+    background-color: #f0f0f0;
+}
+
+tr.tabell_forklaring td {
+    background-color: white;
+    text-align: left;
+    font-size: 20px;
+    font-style: italic;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0px;    
+}
+
+td {
+    text-align: center;
+}
+
+td.error {
+    background: white;
+    font-style: italic;
+    color: red
+}
+ 
+td.empty,
+td.divider,
+th.divider {
+    background-color: white;
+}
+
+td.lag,
+td.spelare,
+td.deltagare {
+    text-align: left;    
+}
+
+td.totalt {
+    background: white;
+    
+}        
+td.totalt_label {
+    background: white;
+    text-align: right;
+}
+
+col.separator_column {
+    width: 20px;
+}
+
+/* Input */
+table.input {
+    margin-left: 0px;
+}
+table.input td {
+    padding: 2px;
+    padding-left: 0px;
+    background: white;
+    font-size: 30px;
+    text-align: left;
+}
+
+input,
+textarea,
+select {
+    font-size: 30px;
+}
+
+/* Headers ------------------------ */
+
+div.match_header {
+    margin-left: auto;
+    margin-right: auto;    
+}
+
+div.match_header img.hemma_klubbmarke {
+    float: left;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-left: 100px;
+    width: 200px;
+    height: 200px;        
+}
+div.match_header img.borta_klubbmarke {
+    float: right;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-right: 100px;
+    width: 200px;
+    height: 200px;        
+}
+
+div.match_header div.match_info p {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+/* Resultattable finns inte inne i matchheadern men hšr ihop med den */
+
+table.resultat_table th {
+    font-size: 40px;
+}
+table.resultat_table td.hemmalag_mal {
+    text-align: left;
+}
+table.resultat_table td.bortalag_mal {
+    text-align: right;
+}
+table.resultat_table col.deltagare_column,
+table.resultat_table col.lag_column {
+    width: 460px;
+}
+table.resultat_table col.mal_column {
+    width: 80px;
+}
+
+/* Matchstatistik.jsp */
+table.uppstallning_table {
+    margin-top: 40px;
+}
+table.uppstallning_table col.position_column {
+    width: 60;
+}
+table.uppstallning_table col.spelare_column {
+    width: 440px;
+}
+table.uppstallning_table col.rating_column {
+    width: 40px;
+}
+
+/* Lagdel table */
+
+table.lag_del {
+    margin-bottom: 20px;
+}
+
+table.lag_del col.lag_column,
+table.lag_del col.deltagare_column {
+    width: 280px;
+}
+
+table.lag_del col.poang_column {
+    width: 60px;
+}
+table.lag_del col.spelare_column {
+    width: 280px;
+}
+
+/* Info table */
+table.info td {
+    background-color: white;
+    padding: 5px;
+    text-align: left;
+    vertical-align: top;
+}
+table.info td.image {
+    text-align: center;
+}
+
+/* Matcher table */
+table.matcher {
+    width: 100%;
+    margin-bottom: 20px;
+}
+table.matcher col.lag_column,
+table.matcher col.deltagare_column {
+    width: 340px;
+}
+
+table.matcher th.omgang_namn {
+    text-align: left;
+}
+
+/* Tabell table */
+table.tabell tr.separator,
+table.tabell td.separator {
+    background: black;
+    height: 1px;
+    padding: 0px;
+}
+
+
+
+/* Spelare, lag, deltagare */
+
+div.lag_header table,
+div.spelare_header table,
+div.deltagare_header table {
+    width: 75%;
+}
+
+div.lag_header th.namn,
+div.spelare_header th.namn,
+div.deltagare_header th.namn {
+    text-align:left;
+    font-size: 40px;
+    border-bottom-width: 1px;
+    border-bottom-color:black;
+    border-bottom-style: solid;
+}
+
+div.lag_header th,
+div.spelare_header th,
+div.deltagare_header th {
+    background: white;
+}
+
+div.lag_header td,
+div.spelare_header td,
+div.deltagare_header td {
+    background: white;
+    text-align: left;
+}
+
+
+div.lag_header,
+div.spelare_header,
+div.deltagare_header {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div.lag_header img.lag_klubbmarke,
+div.spelare_header img.spelare_klubbmarke,
+div.deltagare_header img.deltagare_klubbmarke {
+    float:left;
+    margin-top: 10px;
+    margin-bottom: 40px;
+    width: 200px;
+    height: 200px;    
+}
+
+/* Spelare sŠsongstatistik */
+/* Footern ------------------------------------------------------------------ */
+
+#footer {
+    font-size: 20px;
+    font-style: italic;
+    text-align: center;
+    width: 100%;
+
+    margin-top: 20px;
+    padding-top: 5px;
+
+    border-width:1px;
+    border-top-style: solid;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Definitioner för specifika sidor                                           */
+/* -------------------------------------------------------------------------- */
+
+/* Regler.jsp ----- */
+#poang_system {
+    width: 500px;
+}
+
+#virtuella_poang {
+    width: 700px;
+}
+
+#poang_system,
+#virtuella_poang {
+    margin-left: 0px;
+}
+
+#virtuella_poang th.poanggrund,
+#virtuella_poang td.poanggrund {
+    text-align: left;
+    padding-left: 2px;
+}
+
+/* AllasLag.jsp */
+#allas_lag table {
+    width: 480px;
+}
+
+#allas_lag td.rad {
+    background: white;    
+}
+
+@media screen {
+    #allas_lag tr.print_header {
+        display: none;
+    }
+}
+
+/* Spelarstatistik.jsp */
+#spelarstatistik {
+    font-size: 25px;
+}
+
+/* DromelvaByteOmgangBud.jsp */
+
+#bud_table th.spelare_lag,
+#bud_table th.spelare_position,
+#bud_table td.spelare_lag,
+#bud_table td.spelare_position {
+    display: none;
+}
+#bud_table td {
+    font-size: 25px;
+}
+#bud_table td.lyckat,
+#bud_table td.lyckat a:link,
+#bud_table td.lyckat a:visited {
+    text-align: left;
+    font-weight: bold;
+}
+
+/* DromelvaByteOmgongTillgangliga.jsp */
+#tillgangliga_spelare col.lag_kod_column,
+#tillgangliga_spelare th.spelare_lag,
+#tillgangliga_spelare td.spelare_lag {
+    display: none;
+}
+
+#tillgangliga_spelare img.ny_tillganglig_spelare {
+    width: 62px;
+    height: 24px;
+}
+
+#tillgangliga_spelare col.poang_column {
+    width: 50px;
+}
+
+/* SpelareTransfers.jps */
+
+#transfers {
+    margin-top: 20px;    
+}
+
+/* DromelvaMatchStatistik.jsp */
+#dromelvamatch td.totalt {
+    padding-top: 5px;
+}

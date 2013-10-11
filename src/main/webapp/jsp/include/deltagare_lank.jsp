@@ -1,0 +1,2 @@
+                        <%@ page contentType="text/html; charset=utf-8" %>
+                        <struts:if test="id > 1"><struts:url var="url" action="DeltagareSpelarTrupp"><struts:param name="deltagareId" value="id"/><struts:param name="sasongId" value="sasongId"/></struts:url><struts:a href="%{url}"><struts:property value="namn"/></struts:a></struts:if>

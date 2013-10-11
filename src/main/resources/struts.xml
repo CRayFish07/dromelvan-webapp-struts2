@@ -1,0 +1,279 @@
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts><!-- Configuration for the default package. -->
+    <package name="dromelvan-default" extends="struts-default">
+
+        <interceptors>
+
+            <!-- Implementerar Open Session in View -->
+            <interceptor name="hibernate" class="org.dromelvan.struts2.interceptor.HibernateInterceptor"/>
+            <!-- Ser till att bara inloggade administratörer får tillgang till administrationsactions -->
+            <interceptor name="authentication" class="org.dromelvan.struts2.interceptor.AuthenticationInterceptor"/>
+            <!-- Ful hack som ser till att vi får EXCEPTION result vid conversion fel -->
+            <interceptor name="dromelvaworkflow" class="org.dromelvan.struts2.interceptor.DromelvaWorkflowInterceptor"/>
+            <!-- Ser till att vi kan skicka och validera objekt mellan actions i samma workflow -->
+            <interceptor name="workflowvalidator" class="org.dromelvan.struts2.interceptor.WorkFlowValidatorInterceptor"/>
+
+            <interceptor-stack name="dromelvanDefaultStack">
+                <interceptor-ref name="exception"/>
+                <interceptor-ref name="alias"/>
+                <interceptor-ref name="servletConfig"/>
+                <interceptor-ref name="i18n"/>                                 
+                <interceptor-ref name="prepare"/>
+                <interceptor-ref name="chain"/>
+                <interceptor-ref name="debugging"/>
+                <interceptor-ref name="profiling"/>
+                <interceptor-ref name="scopedModelDriven"/>
+                <interceptor-ref name="modelDriven"/>
+                <interceptor-ref name="authentication"/>
+                <interceptor-ref name="workflowvalidator">
+                    <param name="excludeMethods">input</param>
+                </interceptor-ref>                
+                <interceptor-ref name="fileUpload"/>
+                <interceptor-ref name="checkbox"/>
+                <interceptor-ref name="staticParams"/>
+                <interceptor-ref name="actionMappingParams"/>
+                <interceptor-ref name="params">
+                  <param name="excludeParams">dojo\..*,^struts\..*</param>
+                </interceptor-ref>
+                <interceptor-ref name="conversionError"/>
+                <interceptor-ref name="hibernate"/>                
+                <interceptor-ref name="validation">
+                    <param name="excludeMethods">input,back,cancel,browse</param>
+                </interceptor-ref>
+                <interceptor-ref name="dromelvaworkflow">
+                    <param name="excludeMethods">input,back,cancel,browse</param>
+                </interceptor-ref>
+<!--                <interceptor-ref name="defaultStack"/> -->
+<!--                <interceptor-ref name="hibernate"/> -->
+            </interceptor-stack>
+
+        </interceptors>
+
+        <default-interceptor-ref name="dromelvanDefaultStack"/>
+
+        <global-results>
+            <result name="exception">/jsp/Exception.jsp</result>
+            <result name="error">/jsp/Error.jsp</result>
+            <result name="workflow">/jsp/Workflow.jsp</result>
+            <result name="login" type="redirectAction">LoginForm</result>
+        </global-results>
+
+        <action name="Login" class="org.dromelvan.struts2.Login">
+            <result name="success" type="redirect">
+                  <param name="location">${loginRedirectUrl}</param>
+            </result>
+            <result name="error">/jsp/LoginForm.jsp</result>
+            <result name="input">/jsp/LoginForm.jsp</result>
+        </action>
+
+        <action name="LoginForm" method="input" class="org.dromelvan.struts2.Login">
+            <result name="input">/jsp/LoginForm.jsp</result>
+            <result name="login">/jsp/LoginForm.jsp</result>
+        </action>
+
+        <action name="Logout" class="org.dromelvan.struts2.Logout">
+            <result name="success" type="redirectAction">Index</result>
+        </action>
+
+        <action name="EditPassword" class="org.dromelvan.struts2.EditPassword">
+            <result name="success" type="redirectAction">Administration</result>
+            <result name="error">/jsp/EditPasswordForm.jsp</result>
+            <result name="input">/jsp/EditPasswordForm.jsp</result>
+        </action>
+
+        <action name="InsertSpelare" class="org.dromelvan.struts2.InsertSpelare">
+            <result name="success" type="redirectAction">
+                <param name="actionName">SpelareStatistik</param>
+                <param name="spelareId">${spelare.id}</param> 
+            </result>            
+            <result name="cancel" type="redirectAction">Index</result>            
+            <result name="error">/jsp/InsertSpelareForm.jsp</result>
+            <result name="input">/jsp/InsertSpelareForm.jsp</result>            
+        </action>
+
+        <action name="EditSpelare" class="org.dromelvan.struts2.EditSpelare">
+            <result name="success" type="redirectAction">
+                <param name="actionName">SpelareStatistik</param>
+                <param name="spelareId">${spelare.id}</param> 
+            </result>            
+            <result name="cancel" type="redirectAction">
+                <param name="actionName">SpelareStatistik</param>
+                <param name="spelareId">${spelare.id}</param>
+            </result>
+            <result name="error">/jsp/EditSpelareForm.jsp</result>
+            <result name="input">/jsp/EditSpelareForm.jsp</result>            
+        </action>
+        
+        <action name="EditMatchDatum" class="org.dromelvan.struts2.EditMatchDatum">
+            <result name="success" type="redirectAction">
+                <param name="actionName">MatchStatistik</param>
+                <param name="matchId">${match.id}</param>
+            </result>            
+            <result name="cancel" type="redirectAction">
+                <param name="actionName">MatchStatistik</param>
+                <param name="matchId">${match.id}</param>
+            </result>
+            <result name="error">/jsp/EditMatchDatumForm.jsp</result>
+            <result name="input">/jsp/EditMatchDatumForm.jsp</result>
+        </action>
+        
+        <action name="InsertNyhet" class="org.dromelvan.struts2.InsertNyhet">
+            <result name="success" type="redirectAction">Index</result>
+            <result name="cancel" type="redirectAction">Index</result>
+            <result name="error">/jsp/InsertNyhetForm.jsp</result>
+            <result name="input">/jsp/InsertNyhetForm.jsp</result>
+        </action>
+
+        <action name="EditNyhet" class="org.dromelvan.struts2.EditNyhet">
+            <result name="success" type="redirectAction">Index</result>
+            <result name="cancel" type="redirectAction">Index</result>
+            <result name="error">/jsp/EditNyhetForm.jsp</result>
+            <result name="input">/jsp/EditNyhetForm.jsp</result>
+        </action>
+
+        <action name="DeleteNyhet" class="org.dromelvan.struts2.DeleteNyhet">
+            <result name="success" type="redirectAction">Index</result>
+        </action>
+
+        <action name="TransferlistaSpelare" class="org.dromelvan.struts2.TransferlistaSpelare">
+            <result name="success" type="redirectAction">
+                <param name="actionName">SpelareStatistik</param>
+                <param name="spelareId">${spelare.id}</param>
+            </result>            
+            <result name="cancel" type="redirectAction">
+                <param name="actionName">SpelareStatistik</param>
+                <param name="spelareId">${spelare.id}</param>
+            </result>
+            <result name="input">/jsp/Error.jsp</result>
+        </action>
+
+        <action name="InsertOmgangMatchStatistik" class="org.dromelvan.struts2.InsertOmgangMatchStatistik">
+            <result name="success" type="redirectAction">
+                <param name="actionName">PremierLeague</param>
+                <param name="tavlingId">${omgang.tavling.id}</param>
+                <param name="startOmgang">${omgang.startOmgangNummer}</param>
+            </result>            
+            <result name="cancel" type="redirectAction">
+                <param name="actionName">PremierLeague</param>
+                <param name="tavlingId">${omgang.tavling.id}</param>
+                <param name="startOmgang">${omgang.startOmgangNummer}</param>
+            </result>            
+        </action>
+
+        <action name="InsertDeByteOmgang" class="org.dromelvan.struts2.InsertDeByteOmgang">
+            <result name="success" type="redirectAction">
+                <param name="actionName">DromelvaByten</param>
+                <param name="deByteOmgangId">${deByteOmgang.id}</param>
+            </result>
+            <result name="cancel" type="redirectAction">Administration</result>            
+            <result name="error">/jsp/InsertDeByteOmgangForm.jsp</result>
+            <result name="input">/jsp/InsertDeByteOmgangForm.jsp</result>            
+        </action>
+
+        <action name="InsertTillgangligaSpelare" class="org.dromelvan.struts2.InsertTillgangligaSpelare">
+            <result name="success" type="redirectAction">
+                <param name="actionName">DromelvaByteOmgangTillgangliga</param>
+                <param name="deByteOmgangId">${deByteOmgang.id}</param>
+            </result>
+            <result name="cancel" type="redirectAction">
+                <param name="actionName">DromelvaByteOmgangTillgangliga</param>
+                <param name="deByteOmgangId">${deByteOmgang.id}</param>
+            </result>
+        </action>
+
+        <action name="DownloadSpelareNamnLista" class="org.dromelvan.struts2.DownloadSpelareNamnLista">
+            <result name="success" type="stream">
+                <param name="contentType">application/download</param>
+                <param name="inputName">inputStream</param>
+                <param name="contentDisposition">attachment; filename="spelarenamn.properties"</param>
+            </result>
+        </action>
+
+        <action name="DownloadSpelarstat" class="org.dromelvan.struts2.DownloadSpelarstat">
+            <result name="success" type="stream">
+                <param name="contentType">application/download</param>
+                <param name="inputName">inputStream</param>
+                <param name="contentDisposition">attachment; filename="spelarstat-${sasong.namn}-(${timestamp}).xls"</param>
+            </result>
+        </action>
+
+        <action name="UploadMatchStatistik" class="org.dromelvan.struts2.UploadMatchStatistik">
+            <result name="success" type="redirectAction">
+                <param name="actionName">MatchStatistik</param>
+                <param name="matchId">${match.id}</param>
+            </result>
+            <result name="cancel" type="redirectAction">
+                <param name="actionName">MatchStatistik</param>
+                <param name="matchId">${match.id}</param>
+            </result>
+            <result name="input">/jsp/UploadMatchStatistikForm.jsp</result>            
+        </action>
+
+        <action name="UpdateMatchStatistik" class="org.dromelvan.struts2.UpdateMatchStatistik">
+            <result name="success" type="redirectAction">
+                <param name="actionName">MatchStatistik</param>
+                <param name="matchId">${match.id}</param>
+            </result>
+            <result name="cancel" type="redirectAction">
+                <param name="actionName">MatchStatistik</param>
+                <param name="matchId">${match.id}</param>
+            </result>
+            <result name="input">/jsp/UpdateMatchStatistikForm.jsp</result>            
+        </action>
+
+        <action name="UploadRatings" class="org.dromelvan.struts2.UploadRatings">
+            <result name="success" type="redirectAction">
+                <param name="actionName">MatchStatistik</param>
+                <param name="matchId">${match.id}</param>
+            </result>
+            <result name="cancel" type="redirectAction">
+                <param name="actionName">MatchStatistik</param>
+                <param name="matchId">${match.id}</param>
+            </result>
+            <result name="input">/jsp/UploadRatingsForm.jsp</result>            
+        </action>
+
+        <action name="UploadBud" class="org.dromelvan.struts2.UploadBud">
+            <result name="success" type="redirectAction">
+                <param name="actionName">DromelvaByteOmgangBud</param>
+                <param name="deByteOmgangId">${deByteOmgang.id}</param>
+            </result>
+            <result name="input">/jsp/UploadError.jsp</result>            
+        </action>
+
+        <action name="UploadDeByten" class="org.dromelvan.struts2.UploadDeByten">
+            <result name="success" type="redirectAction">
+                <param name="actionName">DromelvaByten</param>
+                <param name="deByteOmgangId">${deByteOmgang.id}</param>
+            </result>
+            <result name="input">/jsp/UploadError.jsp</result>            
+        </action>
+
+        <action name="MatchStatistikDromelvan" class="org.dromelvan.struts2.MatchStatistik">
+            <result name="success">/jsp/MatchStatistikDromelvan.jsp</result>
+        </action>
+        
+        <action name="Sokning" class="org.dromelvan.struts2.Sokning">
+            <result name="success">/jsp/Sokning.jsp</result>
+            <result name="input" type="redirectAction">Index</result>
+        </action>
+
+        <action name="EvictCache" class="org.dromelvan.struts2.EvictCache">
+            <result name="success" type="redirectAction">Administration</result>
+        </action>
+       
+        <action name="*Form" method="input" class="org.dromelvan.struts2.{1}">
+            <result name="input">/jsp/{1}Form.jsp</result>
+        </action>
+
+        <action name="*" class="org.dromelvan.struts2.{1}">
+            <result name="success">/jsp/{1}.jsp</result>
+            <result name="input">/jsp/Exception.jsp</result>            
+        </action>
+
+    </package>
+
+</struts>

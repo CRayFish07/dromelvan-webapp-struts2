@@ -1,0 +1,803 @@
+/* Globalt ------------------------------------------------------------------ */
+
+body {
+    background-color: white;
+    width: 780px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body a:link,body a:visited,body a:hover {
+    color: black;
+    font-weight: normal;
+    text-decoration: underline
+}
+
+@media print {
+    body a:link,body a:visited,body a:hover {
+        text-decoration: none;
+    }
+
+    th {
+        border-bottom-width: 1px;
+        border-bottom-color: black;
+        border-bottom-style: solid;
+    }
+}
+
+img {
+    border-width: 0px;
+}
+
+/* Header ------------------------------------------------------------------- */
+
+/* De h�r layoutbitarna ska bara g�lla d� man ser headern p� sk�rmen. Om man
+   t.ex printar ut en sida beh�vs ingen logga */
+@media screen {
+    #header {
+        background-image: url(logo.jpg);
+        width: 780px;
+        height: 135px;
+    }
+
+    #header h1 {
+        /* Rubrikerna beh�ver inte visas p� sk�rmen d� stylen �r aktiverad. Det
+           r�cker med loggan */
+        display: none;
+    }
+}
+
+@media print {
+    #header {
+        /* Egentligen vill vi inte ha headern synlig alls! */
+        display: none;
+    }    
+}
+
+/* Sidebaren allm�nt -------------------------------------------------------- */
+
+#sidebar {
+    position: absolute;
+    width: 140px;
+    font-size: 11px;
+    margin-top: 20px;
+}
+
+#sidebar a:link,#sidebar a:visited {
+    text-decoration: none;
+}
+#sidebar a:hover {
+    text-decoration: underline;
+}
+
+#sidebar div.group {
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    margin-bottom: 5px;
+}
+
+#sidebar h2 {
+    display: none;
+}
+
+#sidebar h3 {
+    margin: 0px;
+    height: 20px;
+    font-size: 14px;
+    font-weight: normal;
+    color: white;
+    padding-left: 2px;
+    padding-top: 2px;
+    background-image: url(meny.gif);
+}
+
+#sidebar h4 {
+    margin: 0px;
+    height: 16px;
+    font-size: 11px;
+    font-weight: normal;
+
+    border-top-width: 1px;
+    border-top-color:black;
+    border-top-style: dotted;
+
+    padding-left: 5px;
+    padding-top: 2px;
+    background-color: #f0f0f0;
+}
+
+#sidebar h4.top {
+    /* Vill inte ha border p� den �versta h4 direkt under en h3 */
+    border-top-style: none;
+}
+
+#sidebar li {
+    border-top-width: 1px;
+    border-top-color:black;
+    border-top-style: dotted;
+
+    padding-left: 5px;
+    padding-bottom: 2px;
+    padding-top: 2px;
+}
+
+#sidebar ul {
+    list-style:none;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+}
+
+#sidebar .small_menu {
+    display: none;
+}
+
+#searchform {
+    /* Ser funkigt ut i IE utan detta */
+    margin: 0px;
+
+    border-top-width: 1px;
+    border-top-color:black;
+    border-top-style: dotted;
+
+    padding-top: 5px;
+    padding-left: 2px;
+    padding-bottom: 5px;
+}
+
+#searchform input.text {
+    width: 128px;
+    margin-bottom: 5px;
+}
+
+#searchform input.submit {
+    width: 50px;
+}
+
+#validering h3 {
+    display: none;
+}
+
+#validering p {
+    margin-top: 0px;
+    padding-top: 0px;
+
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+
+    text-align: center;
+}
+
+div #snabb_menu {
+    display: none;
+}
+
+/* D� vi printar ut en sida beh�vs ingen sidebar */
+@media print {
+    #sidebar {
+        display: none;
+    }
+}
+
+/* Inneh�llsdelen ----------------------------------------------------------- */
+
+@media screen {
+    /* Beh�ver bara dra huvuddelen av sidan till h�ger om det ska visas p�
+       sk�rmen. Om det t.ex ska printas har vi ingen sidebar och d� kan den h�r
+       delen ta upp hela bredden */
+    #main {
+        position: relative;
+        left: 160px;
+        margin-top: 20px;
+    }
+}
+
+#content {
+    width: 620px;
+    font-size: 12px;
+}
+
+#content h2 {
+    display: none;
+}
+
+#content h3 {
+    font-size: 17px;
+    font-weight: normal;
+
+    height: 20px;
+
+    border-bottom-width: 1px;
+    border-bottom-color:black;
+    border-bottom-style: solid;
+
+    /* Ser lite funkigt ut i Firefox utan detta */
+    margin: 0px;
+}
+
+#content h3.match_rubrik {
+    display: none;
+}
+
+#content h4 {
+    font-size: 12px;
+    margin-bottom: 0px;
+}
+
+#content div {
+    margin-bottom: 20px;
+}
+
+#content div.byte_omgang_input,
+#content div.spelare_input,
+#content div.match_input {
+    margin-left: auto;
+    margin-right: auto;
+}
+#content div.byte_omgang_input table,
+#content div.spelare_input table {
+    margin-left: 0px;    
+}
+#content div.spelare_input input {
+    width: 90px;
+}
+#content div.match_input {
+    width: 560px;
+}
+#content div.match_input p {
+    padding-left: 2px;
+}
+
+#content span.anchor_links {
+    padding-left: 10px;
+}
+
+#content .finstilt {
+    font-size: 10px;
+    font-style: italic;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0px;
+}
+
+#content select {
+    width: 130px;
+}
+
+#content input.file,
+#content input.text,
+#content input.select,
+#content input.submit {
+    font-size: 11px;
+}
+
+
+
+/* Tables ---------------------------- */
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table.top {
+    margin-top: 20px;
+}
+
+th {
+    background-color: #cccccc;
+}
+
+th a:link,
+th a:visited,
+th a:hover {
+    font-weight: bold;
+}
+
+tr {
+    background-color: #f0f0f0;
+}
+
+tr.tabell_forklaring td {
+    background-color: white;
+    text-align: left;
+    font-size: 10px;
+    font-style: italic;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0px;    
+}
+
+td {
+    text-align: center;
+}
+
+td.error {
+    background: white;
+    font-style: italic;
+    color: red
+}
+ 
+td.empty,
+td.divider,
+th.divider {
+    background-color: white;
+}
+
+td.lag,
+td.spelare,
+td.deltagare {
+    text-align: left;    
+}
+
+td.totalt {
+    background: white;
+}        
+td.totalt_label {
+    background: white;
+    text-align: right;
+}
+
+col.separator_column {
+    width: 20px;
+}
+
+col.matcher_column,
+col.mal_column,
+col.sjalvmal_column,
+col.assist_column,
+col.gult_kort_column,
+col.rott_kort_column,
+col.inbytt_column,
+col.utbytt_column,
+col.position_column,
+col.poang_column,
+col.rating_column {
+    width: 25px;
+}
+col.lag_kod_column,
+col.poang_summa_column,
+col.pris_column {
+    width: 30px;
+}
+col.mom_column,
+col.placering_column {
+    width: 35px;
+}
+col.medel_rating_column,
+col.resultat_column {
+    width: 40px;
+}
+col.datum_column {
+    width: 45px;
+}
+col.match_column {
+    width: 80px;    
+}
+col.transfer_datum_column,
+col.transfer_pris_column {
+    width: 100px;
+}
+col.namn_column,
+col.fornamn_column,
+col.efternamn_column {
+    width: 110px;
+}
+col.lag_column,
+col.deltagare_column {
+    width: 135px;
+}
+col.spelare_column {
+    width: 160px;
+}
+
+/* Info table */
+table.info {
+    width: 560px;
+}
+table.info td {
+    background-color: white;
+    padding: 5px;
+    text-align: left;
+    vertical-align: top;
+}
+table.info td.image {
+    text-align: center;
+}
+
+/* Matcher table */
+table.matcher {
+    width: 560px;
+}
+table.matcher col.lag_column,
+table.matcher col.deltagare_column {
+    width: 180px;
+}
+table.matcher col.resultat_column {
+    width: 80px;
+}
+table.matcher col.omgang_column {
+    width: 60px;
+}
+table.matcher col.datum_column {
+    width: 100px;
+}
+table.matcher th.omgang_namn {
+    text-align: left;
+}
+
+/* Match statistik */
+table.uppstallning_table {
+    width : 560px;
+}
+
+
+/* Tabell table */
+table.tabell {
+    margin-top: 20px;
+    width: 560px;
+}
+table.tabell tr.separator,
+table.tabell td.separator {
+    background: black;
+    height: 1px;
+    padding: 0px;
+}
+table.tabell col.poang_column {
+    width: 45px;
+}
+table.tabell col.mal_gjorda_column,
+table.tabell col.mal_inslappta_column {
+    width: 35px;
+}
+table.tabell col.placering_column ,
+table.tabell col.matcher_spelade_column,
+table.tabell col.matcher_vunna_column,
+table.tabell col.matcher_oavgjorda_column,
+table.tabell col.matcher_forlorade_column {
+    width: 30px;
+}
+
+/* Input */
+table.input {
+    margin-left: 0px;
+}
+table.input td {
+    padding: 2px;
+    padding-left: 0px;
+    background: white;
+    text-align: left;
+}
+
+/* Headers ------------------------ */
+
+div.info {
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+div.info p {
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+
+/* Match */
+div.match_header {
+    width: 560px;
+    height: 130px;
+    margin-left: auto;
+    margin-right: auto;
+    vertical-align: center;    
+}
+div.match_header img.hemma_klubbmarke {
+    float: left;
+    margin-left: 65px;
+    margin-top: 15px;
+    margin-right: 35px;
+}
+div.match_header img.borta_klubbmarke {
+    float: right;
+    margin-right: 65px;
+    margin-top: 15px;
+    margin-left: 35px;
+}
+div.match_header div.match_info {
+    padding-top: 20px;
+}
+div.match_header div.match_info p {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+/* Resultattable finns inte inne i matchheadern men h�r ihop med den */
+table.resultat_table {
+    width: 560px;
+}
+table.resultat_table th {
+    font-size: 16px;
+}
+table.resultat_table td.hemmalag_mal {
+    text-align: left;
+}
+table.resultat_table td.bortalag_mal {
+    text-align: right;
+}
+table.resultat_table col.deltagare_column,
+table.resultat_table col.lag_column {
+    width: 230px;
+}
+table.resultat_table col.mal_column {
+    width: 40px;
+}
+
+/* Spelare, lag, deltagare */
+div.lag_header,
+div.spelare_header,
+div.deltagare_header {
+    width: 600px;
+    height: 150px;
+    margin-left: auto;
+    margin-right: auto;
+}
+div.lag_header table,
+div.spelare_header table,
+div.deltagare_header table {
+    width: 385px;
+    margin-top: 20px;
+}
+div.lag_header th,
+div.spelare_header th,
+div.deltagare_header th {
+    background: white;
+}
+div.lag_header th.namn,
+div.spelare_header th.namn,
+div.deltagare_header th.namn {
+    text-align:left;
+    font-size: 16px;
+
+    border-bottom-width: 1px;
+    border-bottom-color:black;
+    border-bottom-style: solid;
+}
+div.lag_header td,
+div.spelare_header td,
+div.deltagare_header td {
+    background: white;
+    text-align: left;
+    height: 10px;
+}
+div.lag_header col.vanster_column,
+div.lag_header col.hoger_column,
+div.spelare_header col.vanster_column,
+div.spelare_header col.hoger_column,
+div.deltagare_header col.vanster_column,
+div.deltagare_header col.hoger_column {
+    width: 190px;
+}
+
+div.lag_header img.lag_klubbmarke,
+div.spelare_header img.spelare_klubbmarke,
+div.deltagare_header img.deltagare_klubbmarke {
+    float:left;
+    margin-left: 35px;
+    margin-right: 35px;
+}
+
+/* Footern ------------------------------------------------------------------ */
+
+#footer {
+    font-size: 10px;
+    font-style: italic;
+    text-align: center;
+    width: 620px;
+
+    margin-top: 20px;
+    padding-top: 5px;
+
+    border-width:1px;
+    border-top-style: solid;
+}
+
+#footer p {
+    /* F�r Firefox ... */
+    margin-top: 0px;
+}
+
+/* Beh�ver ingen footer n�r vi printar */
+@media print {
+    #footer {
+        display: none;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Definitioner f�r specifika sidor                                           */
+/* -------------------------------------------------------------------------- */
+
+/* Regler.jsp ----- */
+#poang_system,
+#virtuella_poang {
+    margin-left: 0px;
+}
+
+#poang_system col,
+#virtuella_poang col {
+    width: 100px;
+}
+
+#virtuella_poang th.poanggrund,
+#virtuella_poang td.poanggrund {
+    text-align: left;
+    padding-left: 2px;
+}
+
+/* Insert,EditNyhet.jsp */
+
+#nyhetform .rubrik_text {
+    width: 560px;
+}
+
+/* Webappstatistik */
+#applikation_statistik h4 {
+    width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#applikation_statistik table {
+    width: 560px;
+}
+
+/* MatchStatistikDromelvan.jsp mfl */
+#deltagare_dromelvastatistik h4,
+#lag_dromelvastatistik h4 {
+    font-size: 17px;
+    font-weight: normal;
+
+    height: 20px;
+    width: 585px;
+    border-bottom-width: 1px;
+    border-bottom-color: black;
+    border-bottom-style: solid;
+
+    margin-top: 15px;
+    margin-bottom: 0px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#deltagare_dromelvastatistik h4 {
+    width: 565px;
+}
+
+/* DromelvaByteOmgangBud.jsp */
+#bud_table {
+    width: 815px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#bud_table col.deltagare_column {
+    width: 115px;
+}
+#bud_table col.spelare_column {
+    width: 90px;
+}
+#bud_table col.bud_column {
+    width: 110px;
+}
+#bud_table td {
+    font-size: 11px;
+}
+#bud_table td.lyckat,
+#bud_table td.lyckat a:link,
+#bud_table td.lyckat a:hover,
+#bud_table td.lyckat a:visited {
+    text-align: left;
+    font-weight: bold;
+}
+
+/* DromelvaByteOmgangTillgangligaPrint.jsp */
+#tillgangliga_spelare_rubrik {
+    display: none;
+}
+#tillgangliga_spelare_sub_rubrik {
+    text-align: center;
+}
+#tillgangliga_spelare_print td {
+    vertical-align: top;
+}
+#lag_tillgangliga_spelare {
+    width: 125px;
+}
+#tillgangliga_spelare_print ,
+#lag_tillgangliga_spelare {
+    margin-top: 0px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+#tillgangliga_spelare_print th,
+#lag_tillgangliga_spelare th {
+    font-size: 11px;
+    font-style: italic;
+    background: white;
+}
+#tillgangliga_spelare_print td,
+#lag_tillgangliga_spelare td {
+    font-size: 10px;
+    font-style: italic;
+    background: white;
+}
+#lag_tillgangliga_spelare_print col.lag_column {
+    width: 105px;
+}
+#lag_tillgangliga_spelare_print col.position_column {
+    width: 20px;
+}
+
+/* DeltagareSasongStatistikByOmgang.jsp */
+#poang_by_omgang {
+    width: 1200px;
+} 
+#scrollview {
+    width: 620px;
+    height: 450px;
+    margin-top: 20px;
+    overflow: auto;
+    border-width: 1px;
+    border-color:black;
+    border-style: dotted;
+}
+
+/* AllasLag.jsp */
+#allas_lag td.rad {
+    background: white;    
+}
+#allas_lag table {
+    width: 205px;
+    margin:0px;
+    padding:0px;
+}
+
+@media screen {
+    #allas_lag tr.print_header {
+        display: none;
+    }
+}
+
+@media print {
+    
+    #content h3.allas_lag_rubrik {
+        width: 640px;
+        font-size: 14px;
+        font-weight: bold;
+        text-align: center;
+        border: none;
+    }    
+    #allas_lag table {
+        width: 155px;
+        margin: 0px;
+        padding: 0px;
+    }
+    #allas_lag {
+        margin: 0px;
+        padding: 0px;
+    }
+    #allas_lag tr.screen_header {
+        display: none;
+    }
+    #allas_lag td {
+        font-size: 8px;
+        font-style: italic;
+    }
+    #allas_lag td.totalt_label,
+    #allas_lag td.totalt {
+        display: none;
+    }
+    #allas_lag th {
+         font-size: 11px;
+         font-weight: bold;
+         border: none;
+    }
+}
