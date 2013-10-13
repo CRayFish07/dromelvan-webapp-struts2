@@ -83,7 +83,7 @@
                 </ul>
                 </struts:iterator>            
                 </struts:if>           
-                <form id="uploadRatingsForm" method="post" action="<struts:url action="UploadRatings"/>" enctype="multipart/form-data">
+                <form id="uploadRatingsForm" method="post" action="<struts:url action="UploadJAXBRatings"/>" enctype="multipart/form-data">
                     <p>
                         <struts:file name="uploadFile" accept="text/xml"/>
                     </p>

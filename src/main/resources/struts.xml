@@ -248,6 +248,18 @@
             <result name="input">/jsp/UploadRatingsForm.jsp</result>            
         </action>
 
+        <action name="UploadJAXBRatings" class="org.dromelvan.struts2.UploadJAXBRatings">
+            <result name="success" type="redirectAction">
+                <param name="actionName">MatchStatistik</param>
+                <param name="matchId">${match.id}</param>
+            </result>
+            <result name="cancel" type="redirectAction">
+                <param name="actionName">MatchStatistik</param>
+                <param name="matchId">${match.id}</param>
+            </result>
+            <result name="input">/jsp/UploadRatingsForm.jsp</result>            
+        </action>
+
         <action name="UploadBud" class="org.dromelvan.struts2.UploadBud">
             <result name="success" type="redirectAction">
                 <param name="actionName">DromelvaByteOmgangBud</param>
