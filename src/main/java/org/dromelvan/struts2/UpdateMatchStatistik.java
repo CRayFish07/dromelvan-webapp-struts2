@@ -41,6 +41,7 @@ public class UpdateMatchStatistik extends UploadMatchStatistik {
 			spelareMatchStatistik.setUtbyttTid(0);
 			spelareMatchStatistik.setMom(false);
 			spelareMatchStatistik.setDeladMom(false);
+			spelareMatchStatistik.setAssist(0);
 			spelareMatchStatistik.setRating(0);
 			spelareMatchStatistik.setPoang(0);
 		}

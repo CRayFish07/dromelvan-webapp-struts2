@@ -212,6 +212,18 @@
             <result name="input">/jsp/UploadMatchStatistikForm.jsp</result>            
         </action>
 
+        <action name="UploadJAXBMatchStatistik" class="org.dromelvan.struts2.UploadJAXBMatchStatistik">
+            <result name="success" type="redirectAction">
+                <param name="actionName">MatchStatistik</param>
+                <param name="matchId">${match.id}</param>
+            </result>
+            <result name="cancel" type="redirectAction">
+                <param name="actionName">MatchStatistik</param>
+                <param name="matchId">${match.id}</param>
+            </result>
+            <result name="input">/jsp/UploadMatchStatistikForm.jsp</result>            
+        </action>
+
         <action name="UpdateMatchStatistik" class="org.dromelvan.struts2.UpdateMatchStatistik">
             <result name="success" type="redirectAction">
                 <param name="actionName">MatchStatistik</param>
@@ -224,7 +236,31 @@
             <result name="input">/jsp/UpdateMatchStatistikForm.jsp</result>            
         </action>
 
+        <action name="UpdateJAXBMatchStatistik" class="org.dromelvan.struts2.UpdateJAXBMatchStatistik">
+            <result name="success" type="redirectAction">
+                <param name="actionName">MatchStatistik</param>
+                <param name="matchId">${match.id}</param>
+            </result>
+            <result name="cancel" type="redirectAction">
+                <param name="actionName">MatchStatistik</param>
+                <param name="matchId">${match.id}</param>
+            </result>
+            <result name="input">/jsp/UpdateMatchStatistikForm.jsp</result>            
+        </action>
+
         <action name="UploadRatings" class="org.dromelvan.struts2.UploadRatings">
+            <result name="success" type="redirectAction">
+                <param name="actionName">MatchStatistik</param>
+                <param name="matchId">${match.id}</param>
+            </result>
+            <result name="cancel" type="redirectAction">
+                <param name="actionName">MatchStatistik</param>
+                <param name="matchId">${match.id}</param>
+            </result>
+            <result name="input">/jsp/UploadRatingsForm.jsp</result>            
+        </action>
+
+        <action name="UploadJAXBRatings" class="org.dromelvan.struts2.UploadJAXBRatings">
             <result name="success" type="redirectAction">
                 <param name="actionName">MatchStatistik</param>
                 <param name="matchId">${match.id}</param>
