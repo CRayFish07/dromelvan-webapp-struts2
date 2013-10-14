@@ -12,6 +12,7 @@ import org.dromelvan.modell.persistence.MalDAO;
 /**
  * @author macke
  */
+@Deprecated
 public class UpdateMatchStatistik extends UploadMatchStatistik {
 
 	/**

@@ -37,6 +37,7 @@ import dromelvan.tools.xml.SpelareXml;
 /**
  * @author macke
  */
+@Deprecated
 public class UploadMatchStatistik extends UploadAction<MatchDocument> {
 
     /**
@@ -155,7 +156,7 @@ public class UploadMatchStatistik extends UploadAction<MatchDocument> {
                 spelareMatchStatistikMap.add(spelareMatchStatistik);
 		    }
 		    spelareMatchStatistik.setDeltog(spelareXml.getDeltog());
-		    spelareMatchStatistik.setAssist(spelareXml.getAssist());
+		    //spelareMatchStatistik.setAssist(spelareXml.getAssist());
 		    // Det är inte troligt men dock möjligt att en spelare hörde till ett lag då matchens
 		    // omgång spelades, och sedan hör till det andra laget då en framflyttad match spelas.
 		    // Därför sätter vi lag från xmlfilen här också
