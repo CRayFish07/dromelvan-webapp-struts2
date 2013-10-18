@@ -29,6 +29,7 @@ import dromelvan.tools.xml.RatingsXml;
 /**
  * @author macke
  */
+@Deprecated
 public class UploadRatings extends UploadAction<RatingsDocument> {
 
     /**
