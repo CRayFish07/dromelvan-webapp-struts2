@@ -60,7 +60,7 @@ public abstract class UploadJAXBAction<T extends Object> extends DromelvaAdminAc
     }
 
     public void validate() {
-        Logger.getLogger(UploadAction.class).debug("Validerar " + getUploadFileFileName() +
+        Logger.getLogger(UploadJAXBAction.class).debug("Validerar " + getUploadFileFileName() +
                                                    " (" + getUploadFileContentType() + ")");
         if(getUploadFile() == null || getUploadFileContentType() == null || getUploadFileFileName() == null) {
             addActionError("Fil saknas.");
