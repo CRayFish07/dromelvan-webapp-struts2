@@ -200,6 +200,7 @@
             </result>
         </action>
 
+        <!-- 
         <action name="UploadMatchStatistik" class="org.dromelvan.struts2.UploadMatchStatistik">
             <result name="success" type="redirectAction">
                 <param name="actionName">MatchStatistik</param>
@@ -211,7 +212,8 @@
             </result>
             <result name="input">/jsp/UploadMatchStatistikForm.jsp</result>            
         </action>
-
+         -->
+         
         <action name="UploadJAXBMatchStatistik" class="org.dromelvan.struts2.UploadJAXBMatchStatistik">
             <result name="success" type="redirectAction">
                 <param name="actionName">MatchStatistik</param>
@@ -224,6 +226,7 @@
             <result name="input">/jsp/UploadMatchStatistikForm.jsp</result>            
         </action>
 
+        <!-- 
         <action name="UpdateMatchStatistik" class="org.dromelvan.struts2.UpdateMatchStatistik">
             <result name="success" type="redirectAction">
                 <param name="actionName">MatchStatistik</param>
@@ -235,7 +238,8 @@
             </result>
             <result name="input">/jsp/UpdateMatchStatistikForm.jsp</result>            
         </action>
-
+         -->
+        
         <action name="UpdateJAXBMatchStatistik" class="org.dromelvan.struts2.UpdateJAXBMatchStatistik">
             <result name="success" type="redirectAction">
                 <param name="actionName">MatchStatistik</param>
@@ -248,6 +252,7 @@
             <result name="input">/jsp/UpdateMatchStatistikForm.jsp</result>            
         </action>
 
+        <!-- 
         <action name="UploadRatings" class="org.dromelvan.struts2.UploadRatings">
             <result name="success" type="redirectAction">
                 <param name="actionName">MatchStatistik</param>
@@ -259,7 +264,8 @@
             </result>
             <result name="input">/jsp/UploadRatingsForm.jsp</result>            
         </action>
-
+        -->
+         
         <action name="UploadJAXBRatings" class="org.dromelvan.struts2.UploadJAXBRatings">
             <result name="success" type="redirectAction">
                 <param name="actionName">MatchStatistik</param>
@@ -272,6 +278,7 @@
             <result name="input">/jsp/UploadRatingsForm.jsp</result>            
         </action>
 
+        <!-- 
         <action name="UploadBud" class="org.dromelvan.struts2.UploadBud">
             <result name="success" type="redirectAction">
                 <param name="actionName">DromelvaByteOmgangBud</param>
@@ -279,8 +286,9 @@
             </result>
             <result name="input">/jsp/UploadError.jsp</result>            
         </action>
-
-        <action name="UploadDeByten" class="org.dromelvan.struts2.UploadDeByten">
+        -->
+        
+        <action name="UploadDeByten" class="org.dromelvan.struts2.UploadJAXBDeByten">
             <result name="success" type="redirectAction">
                 <param name="actionName">DromelvaByten</param>
                 <param name="deByteOmgangId">${deByteOmgang.id}</param>

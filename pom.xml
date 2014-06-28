@@ -16,7 +16,7 @@
         <dependency>
             <groupId>org.dromelvan</groupId>
             <artifactId>dromelvan-jaxb</artifactId>
-            <version>1.0</version>
+            <version>1.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.apache.struts</groupId>
@@ -100,15 +100,11 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.apache.xmlbeans</groupId>
-            <artifactId>xmlbeans</artifactId>
-            <version>2.4.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.dromelvan</groupId>
-            <artifactId>xmlbeans</artifactId>
-            <version>1.0</version>
-        </dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>        
     </dependencies>
     <build>
         <plugins>
