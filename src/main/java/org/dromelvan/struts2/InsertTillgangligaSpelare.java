@@ -7,9 +7,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.dromelvan.modell.DeByteOmgang;
+import org.dromelvan.modell.Deltagare;
 import org.dromelvan.modell.Lag;
 import org.dromelvan.modell.Sasong;
 import org.dromelvan.modell.Spelare;
+import org.dromelvan.modell.SpelareSasong;
 import org.dromelvan.modell.SpelareSasongStatistik;
 import org.dromelvan.modell.TillgangligSpelare;
 import org.dromelvan.struts2.util.TillgangligSpelareStatistik;
@@ -42,16 +44,38 @@ public class InsertTillgangligaSpelare extends DromelvaAdminAction {
 	public String doExecute() {
 	    getSessionManager().beginTransaction();
 	    DeByteOmgang deByteOmgang = getDAOFactory().getDeByteOmgangDAO().findById(getDeByteOmgang().getId());
-        if(deByteOmgang.getTillgangligaSpelare().size() > 0) {
+        if(deByteOmgang.getStatus() != 0) {
             addActionError("Tillgängliga spelare för bytesomgången har redan spikats.");
             return ERROR;
         }
 
+        // Hämta alla lediga spelare
+        List<TillgangligSpelareStatistik> tillgangligSpelareStatistikList = getTillgangligSpelareStatistik();
+
+        // Gör de transferlistade spelarna lediga.
+        Deltagare deltagare = getDAOFactory().getDeltagareDAO().findById(1);
+        for(TillgangligSpelare tillgangligSpelare : getDAOFactory().getTillgangligSpelareDAO().findByDeByteOmgang(deByteOmgang)) {
+            Sasong sasong = deByteOmgang.getDeOmgang().getTavling().getSasong();
+            Spelare spelare = tillgangligSpelare.getSpelare();
+            SpelareSasong spelareSasong = getDAOFactory().getSpelareSasongDAO().findBySpelareOchSasong(spelare, sasong);
+
+            spelare.setDeltagare(deltagare);
+            spelareSasong.setPris(0.0);
+            spelareSasong.setDeltagare(deltagare);
+
+            getDAOFactory().getSpelareDAO().save(spelare);
+            getDAOFactory().getSpelareSasongDAO().save(spelareSasong);
+        }
+
+        // Transferlista lediga spelare
         List<TillgangligSpelare> tillgangligaSpelare = new ArrayList<TillgangligSpelare>();
-        for(TillgangligSpelareStatistik tillgangligSpelareStatistik : getTillgangligSpelareStatistik()) {
+        for(TillgangligSpelareStatistik tillgangligSpelareStatistik : tillgangligSpelareStatistikList) {
             tillgangligaSpelare.add(tillgangligSpelareStatistik.getTillgangligSpelare());
         }
         getDAOFactory().getTillgangligSpelareDAO().saveBatch(tillgangligaSpelare);
+
+        deByteOmgang.setStatus(1);
+        getDAOFactory().getDeByteOmgangDAO().save(deByteOmgang);
 
         getSessionManager().commitTransaction();
         getSessionManager().evictCache();

@@ -53,7 +53,6 @@
     <div id="main">
 
         <div id="content">
-
             <h2>Nyheter</h2>
             <struts:iterator value="nyheter">
             <div class="meddelande">

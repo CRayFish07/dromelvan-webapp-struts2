@@ -14,6 +14,11 @@ public class EditPassword extends DromelvaAdminAction {
 	private String password;
 	private String password2;
 
+	@Override
+	public boolean isRequiresAdministrator() {
+	    return false;
+	}
+
 	public String doExecute() {
 		if(!getPassword().equals(getPassword2())) {
             addFieldError("password","Lösenorden matchar inte");

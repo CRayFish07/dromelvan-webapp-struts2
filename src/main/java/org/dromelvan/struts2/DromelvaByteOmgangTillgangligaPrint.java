@@ -46,7 +46,7 @@ public class DromelvaByteOmgangTillgangligaPrint extends DromelvaActionSupport {
             lagMap.put(lag,new LagTillgangligaSpelare(lag));
         }
 
-        if(!deByteOmgang.getTillgangligaSpelare().isEmpty()) {
+        if(deByteOmgang.getStatus() != 0) {
             for(TillgangligSpelare tillgangligSpelare : deByteOmgang.getTillgangligaSpelare()) {
                 SpelareSasongStatistik spelareSasongStatistik = spelareSasongStatistikMap.get(tillgangligSpelare.getSpelare());
                 if(spelareSasongStatistik != null && lagMap.get(spelareSasongStatistik.getLag()) != null) {

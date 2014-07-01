@@ -1,5 +1,26 @@
         <%@ page contentType="text/html; charset=utf-8" %>
+        <struts:if test="loggedIn">
+        <div id="user" class="group">
+            <h3><struts:property value="anvandare.namn"/></h3>
+            <struts:if test="anvandare.deltagare.id > 1">
+            <h4 class="top">Lagfunktioner</h4>
+            <ul>
+                <li>                    
+                    <struts:push value="anvandare.deltagare">
+                    <%@ include file="deltagare_lank.jsp" %>
+                    </struts:push>                                    
+                </li>
+            </ul>   
+            </struts:if>         
+            <h4 class="top">Användarfunktioner</h4>
+            <ul>
+                <li><a href="<struts:url action="Logout"/>">Logga ut</a></li>
+                <li><a href="<struts:url action="EditPasswordForm"/>">Byt lösenord</a></li>
+            </ul>        
+        </div>
+        </struts:if>
         <div id="menu" class="group">
+            <%@ page contentType="text/html; charset=utf-8" %>                    
             <h3>Avdelningar</h3>
             <h4 class="top">Information</h4>
             <ul>            
@@ -59,7 +80,7 @@
             </ul>
             <h4 class="administration_menu">Administration</h4>
             <ul class="administration_menu">
-                <li><a href="<struts:url action="LoginForm"/>">Auktorisering</a></li>                
+                <li><a href="<struts:url action="LoginForm"/>">Logga in</a></li>                
                 <li><a href="<struts:url action="Administration"/>">Administrationsfunktioner</a></li>
             </ul>
 

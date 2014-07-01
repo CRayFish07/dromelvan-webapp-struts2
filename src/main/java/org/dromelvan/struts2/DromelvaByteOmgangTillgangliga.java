@@ -27,16 +27,12 @@ public class DromelvaByteOmgangTillgangliga extends DromelvaByten {
 	private static final long serialVersionUID = -5498705810540056970L;
 
 	public List<TillgangligSpelareStatistik> getTillgangligSpelareStatistik() {
-        if(getTillgangligaInlagda()) {
+        if(getDeByteOmgang().getStatus() != 0) {
             return getTillgangligSpelareStatistikInlagd();
         } else {
             return getTillgangligSpelareStatistikPreliminar();
         }
 	}
-
-    public boolean getTillgangligaInlagda() {
-        return !getDeByteOmgang().getTillgangligaSpelare().isEmpty();
-    }
 
     public List<TillgangligSpelareStatistik> getTillgangligSpelareStatistikInlagd() {
         Map<Spelare,SpelareSasongStatistik> spelareSasongStatistikMap = new HashMap<Spelare,SpelareSasongStatistik>();

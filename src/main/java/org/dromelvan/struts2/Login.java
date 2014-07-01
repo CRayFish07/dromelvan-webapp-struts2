@@ -14,12 +14,12 @@ public class Login extends DromelvaActionSupport {
 	private static final long serialVersionUID = -5604268983511526371L;
 	private String login;
 	private String password;
-    private String loginRedirectUrl = "Administration.action";
+    private String loginRedirectUrl = "Index.action";
 
 	public String doExecute() {
 		getSessionManager().beginTransaction();
 		Anvandare anvandare = getDAOFactory().getAnvandareDAO().findByLogin(login);
-		if(anvandare != null && anvandare.isAdministrator()) {
+		if(anvandare != null) {
 			if(anvandare.getPassword().equals("")) {
 			    getDromelvaSession().setAnvandare(anvandare);
 				// Nyskapad användare har tomt password, bör ändra det direkt då de loggat in

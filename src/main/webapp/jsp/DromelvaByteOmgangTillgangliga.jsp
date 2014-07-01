@@ -42,7 +42,7 @@
                 <p>
                     Spelare tillgängliga för byte: <struts:property value="deByteOmgang.datumStr"/>
                 </p>
-                <struts:if test="!tillgangligaInlagda">
+                <struts:if test="deByteOmgang.status == 0">
                 <struts:url var="url" action="InsertTillgangligaSpelareForm">
                     <struts:param name="deByteOmgangId" value="deByteOmgang.id"/>
                 </struts:url>                                                

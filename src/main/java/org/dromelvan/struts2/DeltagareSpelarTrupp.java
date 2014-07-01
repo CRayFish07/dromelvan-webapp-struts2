@@ -1,11 +1,22 @@
 package org.dromelvan.struts2;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.dromelvan.modell.Anvandare;
+import org.dromelvan.modell.DeByteOmgang;
 import org.dromelvan.modell.Deltagare;
 import org.dromelvan.modell.Sasong;
+import org.dromelvan.modell.Spelare;
 import org.dromelvan.modell.SpelareSasong;
+import org.dromelvan.modell.SpelareSasongStatistik;
+import org.dromelvan.modell.TillgangligSpelare;
+import org.dromelvan.modell.persistence.TillgangligSpelareDAO;
 import org.dromelvan.modell.util.collections.SpelareSasongStatistikSorter;
+import org.dromelvan.struts2.util.TillgangligSpelareStatistik;
 
 import com.opensymphony.xwork2.validator.annotations.ConversionErrorFieldValidator;
 
@@ -65,6 +76,52 @@ public class DeltagareSpelarTrupp extends SpelarTrupp<org.dromelvan.modell.stati
         org.dromelvan.modell.statistik.spelartrupp.DeltagareSpelarTrupp deltagareSpelarTrupp = new org.dromelvan.modell.statistik.spelartrupp.DeltagareSpelarTrupp(deltagare,sasong,spelareSasonger);
         deltagareSpelarTrupp.sortSpelareSasongStatistik(getKolumn());
         return deltagareSpelarTrupp;
+    }
+
+    public boolean getHarTransferListadeSpelare() {
+        return !getTransferListadeSpelare().isEmpty();
+    }
+
+    public List<TillgangligSpelareStatistik> getTransferListadeSpelare() {
+        Anvandare anvandare = getAnvandare();
+        List<TillgangligSpelare> tillgangligaSpelare = new ArrayList<TillgangligSpelare>();
+        List<TillgangligSpelareStatistik> tillgangligSpelareStatistik = new ArrayList<TillgangligSpelareStatistik>();
+
+        if(anvandare.isAdministrator() || getDeltagare().equals(anvandare.getDeltagare())) {
+            DeByteOmgang deByteOmgang = getDeByteOmgang();
+            if(deByteOmgang != null && deByteOmgang.getStatus() == 0) {
+                TillgangligSpelareDAO tillgangligSpelareDAO = getDAOFactory().getTillgangligSpelareDAO();
+                tillgangligaSpelare = tillgangligSpelareDAO.findByDeByteOmgangOchDeltagare(deByteOmgang, getDeltagare());
+
+                Map<Spelare,SpelareSasongStatistik> spelareSasongStatistikMap = new HashMap<Spelare,SpelareSasongStatistik>();
+                for(SpelareSasongStatistik spelareSasongStatistik : getDeByteOmgang().getDeOmgang().getTavling().getSasong().getSpelareSasongStatistik()) {
+                    spelareSasongStatistikMap.put(spelareSasongStatistik.getSpelare(), spelareSasongStatistik);
+                }
+
+                for(TillgangligSpelare tillgangligSpelare : tillgangligaSpelare) {
+                    TillgangligSpelareStatistik statistik = new TillgangligSpelareStatistik();
+                    statistik.setTillgangligSpelare(tillgangligSpelare);
+                    statistik.setSpelareSasongStatistik(spelareSasongStatistikMap.get(tillgangligSpelare.getSpelare()));
+                    // Tidigare säsonger kan det ha slunkit med någon spelare som inte spelat alls och inte har någon
+                    // registrerad säsonginfo
+                    if(statistik.getSpelareSasongStatistik() != null) {
+                        tillgangligSpelareStatistik.add(statistik);
+                    }
+                }
+            }
+        }
+        Collections.sort(tillgangligSpelareStatistik);
+        return tillgangligSpelareStatistik;
+    }
+
+    public DeByteOmgang getDeByteOmgang() {
+        Sasong sasong = getDAOFactory().getSasongDAO().findById(getDefaultSasongId());
+        List<DeByteOmgang> deByteOmgangList = getDAOFactory().getDeByteOmgangDAO().findBySasong(sasong);
+        Collections.sort(deByteOmgangList);
+        if(deByteOmgangList.isEmpty()) {
+            return null;
+        }
+        return deByteOmgangList.get(0);
     }
 
 }

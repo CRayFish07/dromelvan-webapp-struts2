@@ -247,6 +247,14 @@ div #snabb_menu {
     padding-left: 2px;
 }
 
+#content div.transferListadeSpelare {
+    margin-top: 20px;
+}
+
+#content div.transferListadeSpelare table {
+    width: 100%;
+}
+
 #content span.anchor_links {
     padding-left: 10px;
 }

@@ -4,11 +4,10 @@ import java.util.Collections;
 import java.util.List;
 
 import org.dromelvan.modell.DeByteOmgang;
-import org.dromelvan.modell.Deltagare;
 import org.dromelvan.modell.Sasong;
 import org.dromelvan.modell.Spelare;
-import org.dromelvan.modell.SpelareSasong;
 import org.dromelvan.modell.TillgangligSpelare;
+import org.dromelvan.modell.persistence.SpelareDAO;
 
 import com.opensymphony.xwork2.validator.annotations.ConversionErrorFieldValidator;
 
@@ -24,11 +23,23 @@ public class TransferlistaSpelare extends DromelvaAdminAction {
 	private int spelareId;
 	private Spelare spelare;
 
+	@Override
+	public boolean isRequiresAdministrator() {
+	    return false;
+	}
+
     public String input() {
         clearWorkFlowObject();
         getSessionManager().beginTransaction();
-        setSpelare(getDAOFactory().getSpelareDAO().findById(getSpelareId()));
-
+        SpelareDAO spelareDAO = getDAOFactory().getSpelareDAO();
+        setSpelare(spelareDAO.findById(getSpelareId()));
+        if(!getDromelvaSession().getAnvandare().isAdministrator()) {
+            Sasong sasong = getDAOFactory().getSasongDAO().findById(getDefaultSasongId());
+            if(!spelareDAO.findTransferlistningsbaraSpelareByAnvandareOchSasong(getDromelvaSession().getAnvandare(), sasong).contains(spelare)) {
+                addActionError("Du kan bara transferlista spelare som tillhör ditt eget lag.");
+                return ERROR;
+            }
+        }
         setWorkFlowObject(getSpelare());
         return INPUT;
     }
@@ -42,16 +53,17 @@ public class TransferlistaSpelare extends DromelvaAdminAction {
 	    tillgangligSpelare.setNy(false);
 	    getDAOFactory().getTillgangligSpelareDAO().save(tillgangligSpelare);
 
-	    Sasong sasong = getDAOFactory().getSasongDAO().findById(getDefaultSasongId());
-	    SpelareSasong spelareSasong = getDAOFactory().getSpelareSasongDAO().findBySpelareOchSasong(spelare, sasong);
-	    Deltagare deltagare = getDAOFactory().getDeltagareDAO().findById(1);
-
-	    spelare.setDeltagare(deltagare);
-	    spelareSasong.setPris(0.0);
-	    spelareSasong.setDeltagare(deltagare);
-
-	    getDAOFactory().getSpelareDAO().save(spelare);
-	    getDAOFactory().getSpelareSasongDAO().save(spelareSasong);
+// Gör detta då bytesomgången stängs istället
+//	    Sasong sasong = getDAOFactory().getSasongDAO().findById(getDefaultSasongId());
+//	    SpelareSasong spelareSasong = getDAOFactory().getSpelareSasongDAO().findBySpelareOchSasong(spelare, sasong);
+//	    Deltagare deltagare = getDAOFactory().getDeltagareDAO().findById(1);
+//
+//	    spelare.setDeltagare(deltagare);
+//	    spelareSasong.setPris(0.0);
+//	    spelareSasong.setDeltagare(deltagare);
+//
+//	    getDAOFactory().getSpelareDAO().save(spelare);
+//	    getDAOFactory().getSpelareSasongDAO().save(spelareSasong);
 
         getSessionManager().commitTransaction();
         getSessionManager().evictCache();
@@ -65,9 +77,13 @@ public class TransferlistaSpelare extends DromelvaAdminAction {
             addActionError("Endast spelare som hör till någon deltagare kan transferlistas.");
         }
         DeByteOmgang deByteOmgang = getDeByteOmgang();
-        if(deByteOmgang == null || deByteOmgang.getTillgangligaSpelare().isEmpty()) {
-            addActionError("Tillgängliga spelare för bytesomgången måste spikas före spelare kan transferlistas.");
+//        if(deByteOmgang == null || deByteOmgang.getTillgangligaSpelare().isEmpty()) {
+//            addActionError("Tillgängliga spelare för bytesomgången måste spikas före spelare kan transferlistas.");
+//        }
+        if(deByteOmgang == null || deByteOmgang.getStatus() != 0) {
+            addActionError("Bytesomgången är stängd för transferlistningar. Bättre lycka nästa gång.");
         }
+
         for(TillgangligSpelare tillgangligSpelare : deByteOmgang.getTillgangligaSpelare()) {
             if(tillgangligSpelare.getSpelare().equals(getSpelare())) {
                 addActionError("Spelaren är redan transferlistad.");

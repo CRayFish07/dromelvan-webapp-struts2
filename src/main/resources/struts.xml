@@ -79,7 +79,7 @@
         </action>
 
         <action name="EditPassword" class="org.dromelvan.struts2.EditPassword">
-            <result name="success" type="redirectAction">Administration</result>
+            <result name="success" type="redirectAction">Index</result>
             <result name="error">/jsp/EditPasswordForm.jsp</result>
             <result name="input">/jsp/EditPasswordForm.jsp</result>
         </action>
@@ -140,13 +140,21 @@
 
         <action name="TransferlistaSpelare" class="org.dromelvan.struts2.TransferlistaSpelare">
             <result name="success" type="redirectAction">
-                <param name="actionName">SpelareStatistik</param>
-                <param name="spelareId">${spelare.id}</param>
+                <param name="actionName">DeltagareSpelarTrupp</param>
+                <param name="deltagareId">${spelare.deltagare.id}</param>
             </result>            
             <result name="cancel" type="redirectAction">
                 <param name="actionName">SpelareStatistik</param>
                 <param name="spelareId">${spelare.id}</param>
             </result>
+            <result name="input">/jsp/Error.jsp</result>
+        </action>
+
+        <action name="AngraTransferListning" class="org.dromelvan.struts2.AngraTransferListning">
+            <result name="success" type="redirectAction">
+                <param name="actionName">DeltagareSpelarTrupp</param>
+                <param name="deltagareId">${spelare.deltagare.id}</param>
+            </result>            
             <result name="input">/jsp/Error.jsp</result>
         </action>
 

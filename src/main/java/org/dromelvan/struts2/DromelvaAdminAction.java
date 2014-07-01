@@ -14,9 +14,10 @@ public abstract class DromelvaAdminAction extends DromelvaActionSupport implemen
 	 */
 	private static final long serialVersionUID = -908770141876012699L;
 	private HttpServletRequest httpServletRequest;
+	private boolean requiresAdministrator = true;
     protected final static String WORKFLOW_OBJECT = DromelvaAdminAction.class.getName() + "workFlowObject";
 
-	public boolean isLoggedIn() {
+	public boolean isLoggedInAdministrator() {
 		Anvandare anvandare = getDromelvaSession().getAnvandare();
 		if(anvandare != null && anvandare.isAdministrator()) {
 			return true;
@@ -51,4 +52,13 @@ public abstract class DromelvaAdminAction extends DromelvaActionSupport implemen
     	return httpServletRequest.getRequestURL() +
     	      (httpServletRequest.getQueryString() != null ? "?" + httpServletRequest.getQueryString() : "");
     }
+
+    public boolean isRequiresAdministrator() {
+        return requiresAdministrator;
+    }
+
+    public void setRequiresAdministrator(boolean requiresAdministrator) {
+        this.requiresAdministrator = requiresAdministrator;
+    }
+
 }

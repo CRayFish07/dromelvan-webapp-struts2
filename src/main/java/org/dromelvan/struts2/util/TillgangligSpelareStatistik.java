@@ -32,7 +32,7 @@ public class TillgangligSpelareStatistik implements Comparable<TillgangligSpelar
 
 	public int compareTo(TillgangligSpelareStatistik tillgangligSpelareStatistik) {
 		int compare = 0;
-		compare = getTillgangligSpelare().getDeltagare().compareTo(tillgangligSpelareStatistik.getTillgangligSpelare().getDeltagare());
+		//compare = getTillgangligSpelare().getDeltagare().compareTo(tillgangligSpelareStatistik.getTillgangligSpelare().getDeltagare());
 		if(compare == 0) {
 			compare = getSpelareSasongStatistik().compareTo(tillgangligSpelareStatistik.getSpelareSasongStatistik());
 		}

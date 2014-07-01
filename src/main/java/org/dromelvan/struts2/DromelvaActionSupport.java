@@ -19,6 +19,7 @@ import org.apache.struts2.interceptor.ApplicationAware;
 import org.apache.struts2.interceptor.ParameterAware;
 import org.apache.struts2.interceptor.SessionAware;
 import org.apache.struts2.util.ServletContextAware;
+import org.dromelvan.modell.Anvandare;
 import org.dromelvan.modell.DeOmgang;
 import org.dromelvan.modell.Omgang;
 import org.dromelvan.modell.Tavling;
@@ -98,6 +99,18 @@ public abstract class DromelvaActionSupport extends HibernateActionSupport imple
 		}
 		return fieldErrors;
 	}
+
+    public boolean isLoggedIn() {
+        Anvandare anvandare = getDromelvaSession().getAnvandare();
+        if(anvandare != null) {
+            return true;
+        }
+        return false;
+    }
+
+    public Anvandare getAnvandare() {
+        return getDromelvaSession().getAnvandare();
+    }
 
 	public String getStyle() {
 		if(!isMobile()) {

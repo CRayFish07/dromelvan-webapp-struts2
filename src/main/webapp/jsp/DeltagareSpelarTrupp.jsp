@@ -174,8 +174,78 @@
                    </td>
                 </tr>                
             </table>
+            
+            <struts:if test="harTransferListadeSpelare">
+		        <div class="transferListadeSpelare">
+	                <h3>Transferlista</h3>
+	                <p>Följande spelare är transferlistade och kommer att försvinna från ditt lag vid listningsdeadline för
+	                   nästa bytesomgång. Före deadline har passerat kan du fortfarande ångra en transferlistning.</p>		        
+		            <table id="tillgangliga_spelare">
+		                <colgroup>
+		                    <col class="spelare_column"/>
+		                    <col class="lag_kod_column"/>
+		                    <col class="position_column"/>
+		                    <col class="matcher_column"/>
+		                    <col class="mal_column"/>
+		                    <col class="assist_column"/>
+		                    <col class="mom_column"/>
+		                    <col class="gult_kort_column"/>
+		                    <col class="rott_kort_column"/>
+		                    <col class="medel_rating_column"/>
+		                    <col class="poang_column"/>
+		                    <col/>
+		                </colgroup>
+		                <tr>
+		                    <th class="spelare">Spelare</th>
+		                    <th class="spelare_lag">Lag</th>
+		                    <th>Pos</th>
+		                    <th>M.</th>
+		                    <th>Mål</th>
+		                    <th>A.</th>
+		                    <th>MoM</th>
+		                    <th>GK</th>
+		                    <th>RK</th>
+		                    <th>R.</th>
+		                    <th>P.</th>
+		                    <th>Ångra</th>
+		                </tr>
+		                    
+		                <struts:iterator value="transferListadeSpelare">
+		                <tr>
+		                    <td class="spelare">
+		                        <struts:push value="tillgangligSpelare.spelare">
+		                        <%@ include file="include/spelare_lank.jsp" %>
+		                        </struts:push>
+		                    </td>
+		                    <struts:push value="spelareSasongStatistik">
+		                    <td class="spelare_lag">
+		                        <struts:url var="url" action="LagSpelarTrupp">
+		                            <struts:param name="lagId" value="lag.id"/>
+		                            <struts:param name="sasongId" value="sasong.id"/>
+		                        </struts:url>            
+		                        <struts:a href="%{url}"><struts:property value="lag.kod"/></struts:a>              
+		                    </td>
+		                    <td><struts:property value="position.kod"/></td>
+		                    <%@ include file="include/spelare_sasong_statistik.jsp" %>
+		                    </struts:push>
+		                    <td>
+                                <struts:url var="url" action="AngraTransferListning">
+                                    <struts:param name="spelareId" value="tillgangligSpelare.spelare.id"/>
+                                </struts:url>            
+                                <struts:a href="%{url}">Ångra</struts:a>              		                    
+		                    </td>
+		                </tr>
+		                </struts:iterator>
+		                <tr class="tabell_forklaring">
+		                   <td colspan="12">
+		                      Pos = Position, M = Matcher, A = Assist, GK = gula kort, RK = röda kort, R = Medelrating,
+		                      P = Drömelvapoäng
+		                   </td>
+		                </tr>                
+		            </table>            
+		        </div>
+            </struts:if>            
         </div>
-
         <%@ include file="include/footer.jsp" %>
 
     </div>
