@@ -23,6 +23,7 @@ public class DromelvaByten extends DromelvaActionSupport {
 	private List<DeByteOmgang> deByteOmgangar = new ArrayList<DeByteOmgang>();
 
 	public String doExecute() {
+
         getSessionManager().beginTransaction();
         if(tavlingId > 0) {
         	tavling = getDAOFactory().getTavlingDAO().findByIdOchTyp(getTavlingId(),Tavling.DROMELVAN);

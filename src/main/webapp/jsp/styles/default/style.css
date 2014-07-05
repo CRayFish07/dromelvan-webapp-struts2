@@ -682,7 +682,7 @@ div.deltagare_header img.deltagare_klubbmarke {
 
 /* DromelvaByteOmgangBud.jsp */
 #bud_table {
-    width: 815px;
+	width: 600px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -693,8 +693,9 @@ div.deltagare_header img.deltagare_klubbmarke {
     width: 90px;
 }
 #bud_table col.bud_column {
-    width: 110px;
+    width: 70px;
 }
+
 #bud_table td {
     font-size: 11px;
 }

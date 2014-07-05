@@ -5,8 +5,10 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.dromelvan.modell.Anvandare;
 import org.dromelvan.modell.Bud;
 import org.dromelvan.modell.DeByteOmgang;
+import org.dromelvan.modell.Deltagare;
 
 
 /**
@@ -20,10 +22,16 @@ public class ListadSpelareBudCollection extends ArrayList<ListadSpelareBud> {
 	private static final long serialVersionUID = 7694427999734755692L;
 	private int maxAntalBud;
 
-	public ListadSpelareBudCollection(DeByteOmgang deByteOmgang) {
+	public ListadSpelareBudCollection(Anvandare anvandare, DeByteOmgang deByteOmgang) {
         Map<String,ListadSpelareBud> listadSpelareBudMap = new HashMap<String,ListadSpelareBud>();
 
+        Deltagare deltagare = anvandare.getDeltagare();
         for(Bud bud : deByteOmgang.getBud()) {
+            if(deByteOmgang.getStatus() != 2) {
+                if(deltagare == null || !bud.getDeltagare().equals(deltagare)) {
+                    continue;
+                }
+            }
             ListadSpelareBud listadSpelareBud = listadSpelareBudMap.get(bud.getDeltagare().getId() + ";" + bud.getListadSpelarePrioritet());
             if(listadSpelareBud == null) {
                 listadSpelareBud = new ListadSpelareBud(bud);

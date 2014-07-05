@@ -36,7 +36,7 @@
 
             <h2>Bud</h2>
 
-            <h3><struts:property value="deByteOmgang.namn"/> <struts:property value="deByteOmgang.deOmgang.omgang.tavling.sasong.namn"/></h3>
+            <h3>Bud - <struts:property value="deByteOmgang.namn"/> <struts:property value="deByteOmgang.deOmgang.omgang.tavling.sasong.namn"/></h3>
 
             <div class="info">
                 <p>
@@ -52,45 +52,43 @@
             <table id="bud_table">
                 <colgroup>
                     <col class="deltagare_column"/>
+                    <col class="position_column"/>
                     <col class="spelare_column"/>
                     <col class="lag_kod_column"/>
                     <col class="position_column"/>
+                    <col class="poang_column"/>
                     <col class="bud_column"/>
                     <col class="bud_column"/>
-                    <col class="bud_column"/>
-                    <col class="bud_column"/>
-                    <col class="bud_column"/>
+                    <col class="lyckate_column"/>
+                    <struts:if test="deByteOmgang.status == 1">
+                    <col/>
+                    </struts:if>                    
                 </colgroup>
                 <tr>
                     <th class="deltagare">Deltagare</th>
+                    <th class="deltagare">#</th>
                     <th class="spelare">Listad</th>
                     <th class="spelare_lag">Lag</th>
                     <th class="spelare_position">Pos</th>
-                    <th>Bud 1</th>
-                    <th>Bud 2</th>
-                    <th>Bud 3</th>
-                    <struts:if test="listadeSpelareBud.maxAntalBud > 3">
-                    <th>Bud 4</th>
-                    </struts:if>
-                    <struts:else>
-                    <td class="empty">&nbsp;</td>
-                    </struts:else>
-                    <struts:if test="listadeSpelareBud.maxAntalBud > 4">
-                    <th>Bud 5</th>
-                    </struts:if>
-                    <struts:else>
-                    <td class="empty">&nbsp;</td>
-                    </struts:else>                    
+                    <th class="spelare_position">P.</th>
+                    <th>Bud</th>
+                    <th>Aktivt bud</th>
+                    <th>Lyckat</th>
+                    <struts:if test="deByteOmgang.status == 1">
+                    <th>Ångra</th>
+                    </struts:if>                    
                 </tr>
-                    
-                <struts:iterator value="listadeSpelareBud">
+                <struts:iterator value="bud">
                 <tr>
                     <td class="deltagare">
                         <struts:push value="deltagare">
                         <%@ include file="include/deltagare_lank.jsp" %>
                         </struts:push>
                     </td>
-                    <td class="spelare">
+                    <td>
+                        <struts:property value="listadSpelarePrioritet"/>
+                    </td>                    
+                    <td class="spelare <struts:if test="lyckat">lyckat</struts:if>">
                         <struts:url var="url" action="SpelareStatistik">
                             <struts:param name="spelareId" value="spelare.id"/>
                             <struts:param name="sasongId" value="sasongId"/>
@@ -108,22 +106,29 @@
                     <td class="spelare_position">
                         <struts:property value="spelare.position.kod"/>
                     </td>
-                    <struts:iterator value="bud">
-                    <td <struts:if test="lyckat">class="lyckat"</struts:if><struts:else>class="spelare"</struts:else>>
-                        <struts:if test="dummy">
-                        Ingen
-                        </struts:if>
-                        <struts:else>
-                        <struts:url var="url" action="SpelareStatistik">
-                            <struts:param name="spelareId" value="spelare.id"/>
-                            <struts:param name="sasongId" value="sasongId"/>
-                        </struts:url>                                              
-                        <struts:a href="%{url}"><struts:property value="spelare.efternamn"/></struts:a> <struts:property value="pris"/>
-                        </struts:else>                        
+                    <td class="poang">
+                        <struts:property value="prioritet"/>
+                    </td>                    
+                    <td>
+                        <struts:property value="pris"/>
                     </td>
-                    </struts:iterator>
+                    <td>
+                        <struts:property value="aktivtPris"/>
+                    </td>                    
+                    <td>
+                        <struts:property value="lyckat"/>
+                    </td>                                        
+                    <struts:if test="deByteOmgang.status == 1">
+                    <td>
+	                    <struts:url var="url" action="AngraBud">
+	                        <struts:param name="budId" value="id"/>
+	                    </struts:url>                                        
+                        <struts:a href="%{url}">Ångra</struts:a>
+                    </td>
+                    
+                    </struts:if>                                        
                 </tr>
-                </struts:iterator>
+                </struts:iterator>            
             </table>
         </div>
 

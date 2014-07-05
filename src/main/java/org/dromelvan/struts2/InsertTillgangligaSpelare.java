@@ -65,6 +65,8 @@ public class InsertTillgangligaSpelare extends DromelvaAdminAction {
 
             getDAOFactory().getSpelareDAO().save(spelare);
             getDAOFactory().getSpelareSasongDAO().save(spelareSasong);
+
+            // TODO: Lägg in ett byte från deltagare till Ingen
         }
 
         // Transferlista lediga spelare

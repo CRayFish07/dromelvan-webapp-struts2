@@ -158,6 +158,27 @@
             <result name="input">/jsp/Error.jsp</result>
         </action>
 
+        <action name="InsertBud" class="org.dromelvan.struts2.InsertBud">
+            <result name="success" type="redirectAction">
+                <param name="actionName">DromelvaByteOmgangBud</param>
+                <param name="deByteOmgangId">${deByteOmgang.id}</param>
+            </result>            
+            <result name="cancel" type="redirectAction">
+                <param name="actionName">SpelareStatistik</param>
+                <param name="spelareId">${spelare.id}</param>
+            </result>                        
+            <result name="error">/jsp/InsertBudForm.jsp</result>
+            <result name="input">/jsp/InsertBudForm.jsp</result>
+        </action>
+
+        <action name="AngraBud" class="org.dromelvan.struts2.AngraBud">
+            <result name="success" type="redirectAction">
+                <param name="actionName">DromelvaByteOmgangBud</param>
+                <param name="deByteOmgangId">${deByteOmgang.id}</param>
+            </result>            
+            <result name="input">/jsp/Error.jsp</result>
+        </action>
+
         <action name="InsertOmgangMatchStatistik" class="org.dromelvan.struts2.InsertOmgangMatchStatistik">
             <result name="success" type="redirectAction">
                 <param name="actionName">PremierLeague</param>

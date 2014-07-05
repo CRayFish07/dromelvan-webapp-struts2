@@ -37,6 +37,12 @@
             
             <h4 class="administration_menu">Administration</h4>
             <ul class="administration_menu">
+                <struts:if test="deByteOmgang != null && deByteOmgang.status == 1">
+                <struts:url var="url" action="InsertBudForm">
+                    <struts:param name="spelareId" value="spelareId"/>
+                </struts:url>                                              
+                <li><struts:a href="%{url}">Lägg bud</struts:a></li>            
+                </struts:if>
                 <struts:url var="url" action="EditSpelareForm">
                     <struts:param name="spelareId" value="spelareId"/>
                 </struts:url>                                              

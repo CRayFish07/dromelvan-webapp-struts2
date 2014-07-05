@@ -3,6 +3,7 @@ package org.dromelvan.struts2;
 import java.util.Collections;
 import java.util.List;
 
+import org.dromelvan.modell.DeByteOmgang;
 import org.dromelvan.modell.Sasong;
 import org.dromelvan.modell.Spelare;
 import org.dromelvan.modell.SpelareMatchStatistik;
@@ -22,6 +23,7 @@ public class SpelareStatistik extends DromelvaActionSupport {
 	private int spelareId;
 	private int sasongId;
 	private Sasong sasong;
+	private DeByteOmgang deByteOmgang;
 	private SpelareSasongStatistik spelareSasongStatistik;
 	private List<SpelareMatchStatistik> spelareMatchStatistik;
 	private List<Sasong> sasonger;
@@ -46,6 +48,13 @@ public class SpelareStatistik extends DromelvaActionSupport {
                 spelareSasongStatistik = new DummySpelareSasongStatistik(spelare);
         	}
             spelareSasongStatistik.setSasong(sasong);
+        }
+
+        List<DeByteOmgang> deByteOmgangList = getDAOFactory().getDeByteOmgangDAO().findBySasong(sasong);
+        Collections.sort(deByteOmgangList);
+        if(isLoggedIn()
+           && !deByteOmgangList.isEmpty()) {
+            setDeByteOmgang(deByteOmgangList.get(0));
         }
 
         sasonger = getDAOFactory().getSasongDAO().findAll();
@@ -77,7 +86,15 @@ public class SpelareStatistik extends DromelvaActionSupport {
 		return sasonger;
 	}
 
-	public SpelareSasongStatistik getSpelareSasongStatistik() {
+	public DeByteOmgang getDeByteOmgang() {
+        return deByteOmgang;
+    }
+
+    public void setDeByteOmgang(DeByteOmgang deByteOmgang) {
+        this.deByteOmgang = deByteOmgang;
+    }
+
+    public SpelareSasongStatistik getSpelareSasongStatistik() {
 		return spelareSasongStatistik;
 	}
 
