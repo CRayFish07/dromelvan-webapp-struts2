@@ -179,6 +179,14 @@
             <result name="input">/jsp/Error.jsp</result>
         </action>
 
+        <action name="HanteraBud" class="org.dromelvan.struts2.HanteraBud">
+            <result name="success" type="redirectAction">
+                <param name="actionName">DromelvaByten</param>
+                <param name="deByteOmgangId">${deByteOmgang.id}</param>
+            </result>            
+            <result name="input">/jsp/Error.jsp</result>
+        </action>
+
         <action name="InsertOmgangMatchStatistik" class="org.dromelvan.struts2.InsertOmgangMatchStatistik">
             <result name="success" type="redirectAction">
                 <param name="actionName">PremierLeague</param>

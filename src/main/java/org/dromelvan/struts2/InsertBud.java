@@ -136,6 +136,8 @@ public class InsertBud extends DromelvaAdminAction {
         bud.setAktivtPris(bud.getPris());
         bud.setLyckat(false);
 
+        System.out.print("Lyckat: " + bud.isLyckat());
+
         getDAOFactory().getBudDAO().save(bud);
 
 		getSessionManager().commitTransaction();

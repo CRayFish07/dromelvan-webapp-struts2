@@ -48,6 +48,14 @@
                 <p>
                     Byten i kraft fr.o.m: <struts:property value="deByteOmgang.deOmgang.omgang.namn"/>
                 </p>
+                <struts:if test="deByteOmgang.status == 1">
+                <p>
+	                <struts:url var="url" action="HanteraBud">
+	                    <struts:param name="deByteOmgangId" value="deByteOmgang.id"/>
+	                </struts:url>                                        
+	                <struts:a href="%{url}">Hantera bud</struts:a>.
+                </p>
+                </struts:if>
             </div>
             <table id="bud_table">
                 <colgroup>
