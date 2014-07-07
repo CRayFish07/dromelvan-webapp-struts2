@@ -88,15 +88,15 @@
                 </tr>
                 <struts:iterator value="bud">
                 <tr>
-                    <td class="deltagare">
+                    <td class="deltagare <struts:if test="lyckat">lyckat</struts:if><struts:if test="aktivtPris == 0.0">inaktivt</struts:if>">
                         <struts:push value="deltagare">
                         <%@ include file="include/deltagare_lank.jsp" %>
                         </struts:push>
                     </td>
-                    <td>
+                    <td class="<struts:if test="lyckat">lyckat</struts:if><struts:if test="aktivtPris == 0.0">inaktivt</struts:if>">
                         <struts:property value="listadSpelarePrioritet"/>
                     </td>                    
-                    <td class="spelare <struts:if test="lyckat">lyckat</struts:if>">
+                    <td class="spelare <struts:if test="lyckat">lyckat</struts:if><struts:if test="aktivtPris == 0.0">inaktivt</struts:if>">
                         <struts:url var="url" action="SpelareStatistik">
                             <struts:param name="spelareId" value="spelare.id"/>
                             <struts:param name="sasongId" value="sasongId"/>
@@ -108,22 +108,22 @@
                         <struts:a href="%{url}"><struts:property value="spelare.kortNamn"/></struts:a>
                         </struts:else>
                     </td>
-                    <td class="spelare_lag">
+                    <td class="spelare_lag <struts:if test="lyckat">lyckat</struts:if><struts:if test="aktivtPris == 0.0">inaktivt</struts:if>">
                         <struts:property value="spelare.lag.kod"/>
                     </td>
-                    <td class="spelare_position">
+                    <td class="spelare_position <struts:if test="lyckat">lyckat</struts:if><struts:if test="aktivtPris == 0.0">inaktivt</struts:if>">
                         <struts:property value="spelare.position.kod"/>
                     </td>
-                    <td class="poang">
+                    <td class="poang <struts:if test="lyckat">lyckat</struts:if><struts:if test="aktivtPris == 0.0">inaktivt</struts:if>">
                         <struts:property value="prioritet"/>
                     </td>                    
-                    <td>
+                    <td class="<struts:if test="lyckat">lyckat</struts:if><struts:if test="aktivtPris == 0.0">inaktivt</struts:if>">
                         <struts:property value="pris"/>
                     </td>
-                    <td>
+                    <td class="<struts:if test="lyckat">lyckat</struts:if><struts:if test="aktivtPris == 0.0">inaktivt</struts:if>">
                         <struts:property value="aktivtPris"/>
                     </td>                    
-                    <td>
+                    <td class="<struts:if test="lyckat">lyckat</struts:if><struts:if test="aktivtPris == 0.0">inaktivt</struts:if>">
                         <struts:property value="lyckat"/>
                     </td>                                        
                     <struts:if test="deByteOmgang.status == 1">

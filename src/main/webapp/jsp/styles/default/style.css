@@ -703,8 +703,15 @@ div.deltagare_header img.deltagare_klubbmarke {
 #bud_table td.lyckat a:link,
 #bud_table td.lyckat a:hover,
 #bud_table td.lyckat a:visited {
-    text-align: left;
     font-weight: bold;
+    text-transform: uppercase;
+}
+
+#bud_table td.inaktivt,
+#bud_table td.inaktivt a:link,
+#bud_table td.inaktivt a:hover,
+#bud_table td.inaktivt a:visited {
+    text-decoration: line-through;
 }
 
 /* DromelvaByteOmgangTillgangligaPrint.jsp */
