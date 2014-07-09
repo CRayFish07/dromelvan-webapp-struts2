@@ -183,6 +183,10 @@ public abstract class DromelvaActionSupport extends HibernateActionSupport imple
 		return senastSpeladDeOmgang;
 	}
 
+    public boolean isBudgivning() {
+        return Boolean.valueOf(getApplicationParameter("applikation.budgivning"));
+    }
+
     public int getTransferBudget() {
         return Integer.parseInt(getApplicationParameter("applikation.transfer_budget"));
     }

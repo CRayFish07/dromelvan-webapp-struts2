@@ -46,6 +46,11 @@
         <param-value>5</param-value>
     </context-param>
 
+    <context-param>
+        <param-name>applikation.budgivning</param-name>
+        <param-value>false</param-value>
+    </context-param>
+
     <filter>
         <filter-name>struts2</filter-name>
         <filter-class>org.apache.struts2.dispatcher.FilterDispatcher</filter-class>

@@ -1,5 +1,10 @@
 package org.dromelvan.struts2;
 
+import java.util.Collections;
+import java.util.List;
+
+import org.dromelvan.modell.DeByte;
+import org.dromelvan.modell.DeByteOmgang;
 import org.dromelvan.modell.Deltagare;
 import org.dromelvan.modell.Lag;
 import org.dromelvan.modell.Sasong;
@@ -64,6 +69,8 @@ public class EditSpelare extends SpelareInputAction {
         	setPris(0.0);
         }
 
+        double oldPris = 0.0;
+
 		if(spelareSasong == null) {
 			// Om vi håller på med en spelare som inte vart med än den här säsongen
 			// så måste vi lägga in ett ny objekt för spelaren för den aktuella säsongen.
@@ -81,6 +88,7 @@ public class EditSpelare extends SpelareInputAction {
     			getDAOFactory().getSpelareSasongDAO().save(spelareSasong);
             }
 		} else {
+		    oldPris = spelareSasong.getPris();
 			spelareSasong.setLag(spelare.getLag());
 			spelareSasong.setDeltagare(spelare.getDeltagare());
 			spelareSasong.setPosition(spelare.getPosition());
@@ -89,6 +97,27 @@ public class EditSpelare extends SpelareInputAction {
             getDAOFactory().getSpelareSasongDAO().save(spelareSasong);
 		}
 
+		if(spelareSasong.getPris() != oldPris
+		   && isBudgivning()) {
+	        List<DeByteOmgang> deByteOmgangList = getDAOFactory().getDeByteOmgangDAO().findBySasong(sasong);
+	        Collections.sort(deByteOmgangList);
+	        DeByteOmgang deByteOmgang = deByteOmgangList.get(0);
+
+	        DeByte deByte = new DeByte();
+	        for(DeByte deByteTemp : deByteOmgang.getDeByten()) {
+	            if(deByteTemp.getKoptSpelare().equals(spelare)) {
+	                deByte = deByteTemp;
+	                break;
+	            }
+	        }
+
+	        deByte.setDeByteOmgang(deByteOmgang);
+            deByte.setDeltagare(spelare.getDeltagare());
+            deByte.setSaldSpelare(getDAOFactory().getSpelareDAO().findById(1));
+            deByte.setKoptSpelare(spelare);
+            deByte.setPris(spelareSasong.getPris());
+            getDAOFactory().getDeByteDAO().save(deByte);
+		}
 		getSessionManager().commitTransaction();
 		getSessionManager().evictCache();
         clearWorkFlowObject();
