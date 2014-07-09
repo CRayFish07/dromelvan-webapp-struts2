@@ -64,6 +64,7 @@
                 </tr>
                     
                 <struts:iterator value="deByteOmgang.deByten">
+                <struts:if test="pris > 0.0">
                 <tr>
                     <td class="deltagare">
                         <struts:push value="deltagare">
@@ -82,6 +83,7 @@
                     </td>
                     <td><struts:property value="pris"/></td>
                 </tr>
+                </struts:if>
                 </struts:iterator>
                 
             </table>

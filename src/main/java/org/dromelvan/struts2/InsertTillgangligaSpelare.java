@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.dromelvan.modell.DeByte;
 import org.dromelvan.modell.DeByteOmgang;
 import org.dromelvan.modell.Deltagare;
 import org.dromelvan.modell.Lag;
@@ -59,14 +60,20 @@ public class InsertTillgangligaSpelare extends DromelvaAdminAction {
             Spelare spelare = tillgangligSpelare.getSpelare();
             SpelareSasong spelareSasong = getDAOFactory().getSpelareSasongDAO().findBySpelareOchSasong(spelare, sasong);
 
+            DeByte deByte = new DeByte();
+            deByte.setDeByteOmgang(deByteOmgang);
+            deByte.setDeltagare(spelare.getDeltagare());
+            deByte.setSaldSpelare(spelare);
+            deByte.setKoptSpelare(getDAOFactory().getSpelareDAO().findById(1));
+            deByte.setPris(0.0);
+            getDAOFactory().getDeByteDAO().save(deByte);
+
             spelare.setDeltagare(deltagare);
             spelareSasong.setPris(0.0);
             spelareSasong.setDeltagare(deltagare);
 
             getDAOFactory().getSpelareDAO().save(spelare);
             getDAOFactory().getSpelareSasongDAO().save(spelareSasong);
-
-            // TODO: Lägg in ett byte från deltagare till Ingen
         }
 
         // Transferlista lediga spelare
