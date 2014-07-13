@@ -119,14 +119,10 @@
                 tävlingens internetsida.
             </p>
             <p>
-                Alla ratings grundas på matchrapporterna från www.skysports.com. Övrig
-                matchstatistik tas från www.soccernet.com då de brukar vara snabba med att
-                få upp matchstatistiken efter att matcherna spelats klart. Om dessa misslyckas
-                av någon anledning tas matchfakta från www.premierleague.com och 
-                ratings från de ratings allmänheten kan rösta för på Skysports site. Saknade
-                ratings ersätts med det framröstade värde som gäller kl 18.00 2 dagar efter
-                att matchen spelats. Om dispyter uppstår då det gäller matchstatistik är det
-                www.premierleague.com som har sista ordet.
+                OBS! Nyhet: All matchstatistik inklusive ratings tas från www.whoscored.com. Whoscored.coms rating
+                avrundas till närmsta jämna tal. .5 avrundas uppåt. Om whoscored.com
+                misslyckas med att få upp statistik tas matchstatistik från www.premierleague.com
+                och ratings från www.skysports.com.
             </p>
             <p>
                 Stjärnratingen tilldelas på följande sätt: Om en
@@ -159,25 +155,25 @@
                     <td class="poanggrund">Rating 10</td>
                     <td>5</td>
                     <td class="poanggrund">1 insläppt mål</td>
-                    <td>OBS! Nyhet: 1</td>
+                    <td>1</td>
                 </tr>
                 <tr>
                     <td class="poanggrund">Rating 9</td>
                     <td>3</td>
                     <td class="poanggrund">2 insläppta mål</td>
-                    <td>OBS! Nyhet: 0</td>
+                    <td>0</td>
                 </tr>
                 <tr>
                     <td class="poanggrund">Rating 8</td>
                     <td>2</td>
                     <td class="poanggrund">3 insläppta mål</td>
-                    <td>OBS! Nyhet: -1</td>
+                    <td>-1</td>
                 </tr>
                 <tr>
                     <td class="poanggrund">Rating 7</td>
                     <td>1</td>
                     <td class="poanggrund">4 insläppta mål</td>
-                    <td>OBS! Nyhet: -2</td>
+                    <td>-2</td>
                 </tr>
                 <tr>
                     <td class="poanggrund">Ingen rating</td>
@@ -276,14 +272,10 @@
                     <td>&nbsp;</td>
                 </tr>
             </table>
-
+ 
             <p>
-                På grund av diverse faktorer vill vi inte att spelare som blivit
-                inbytta och knappt hunnit göra något skall få ratings. Därför måste en spelare ha spelat minst
-                10 minuter (utbytt tid minus inbytt tid (0 om spelaren startade matchen)) för att
-                få rating. Eftersom det är svårt att hitta någon statistik för hur många övertidsminuter som 
-                spelades i varje match antar vi att varje match slutade efter jämt 90 minuter då vi räknar ut 
-                hur länge en spelare fanns på planen.
+                OBS! Nyhet: Eftersom Whoscored.com startar sina ratings från 6.00 så får spelare poäng för
+                ratings oberoende av hur många minute de spelat.
             </p>
 
             <h4>Anmälningsavgift</h4>
@@ -320,8 +312,7 @@
                 <li>Det finns inga givna priser på spelarna, förutom att minimipriset på
                     alla spelare är 0,5. Man måste även bjuda minst 0,5 mer än nuvarande
                     högsta bud ifall man vill bjuda över.</li>
-                <li>OBS! Nyhet: Laget skall bestå av målvakt, 4 försvarare,
-                    4 mittfältare och 2 anfallare (4-4-2).</li>
+                <li>Laget skall bestå av målvakt, 4 försvarare, 4 mittfältare och 2 anfallare (4-4-2).</li>
                 <li>Det är viktigt att hålla koll på att man inte bjuder mer än man
                     har råd med. Se alltså till att du åtminstone har kvar så mycket
                     pengar att du får ihop ett lag! Säkert händer det att någon ändå
@@ -330,45 +321,69 @@
                     den aktuella spelaren.</li>
             </ul>
 
-            <h4>Bytessystemet</h4>
+            <h4>OBS! Nyhet: Bytessystemet</h4>
             <ul>
-                <li>I början av månaderna oktober, december,
-                    februari, april skall du ha meddelat vilka spelare du sätter upp på transferlistan.
+                <li>
+                    OBS! Nyhet: Transferfönster öppnar i början av månaderna oktober, december, februari och april.
                     Exakta datum meddelas närmare bytestillfället.
-                    På kvällen finns tillgängliga spelare på internetsidan. Dagen efter skall
-                    du meddela vilka spelare du bjuder på. Dagen efter fördelas
-                    spelarna och de nyinköpta är i aktion omgången efter. Du kan bjuda
-                    på vem som helst som finns på listan, även de spelare du
-                    själv satt upp.</li>
-                <li>Alla spelare du transferlistat är fr.o.m transferlistningen borta ur ditt lag.
+                </li>
+                <li>
+                    OBS! Nyhet: Nör som helst före transferfönstret öppnar kan du logga in på siten och transferlista spelare.
+                    Spelarna kommer tillsvidare att vara kvar i ditt lag och före transferfönstret stänger kan du kan även ångra 
+                    alla transferlistningar du gjort. Endast du själv kan se vilka spelare som finns på din transferlista före
+                    transferfönstret öppnar.
+                </li>
+                <li>
+                    OBS! Nyhet: Då transferfönstret öppnar kommer alla spelare du transferlistat att försvinna från ditt lag.
+                    Då detta är gjort är det får sent att ångra sig. Se till att inga spelare du vill ha kvar i ditt lag är 
+                    transferlistade då deadline för transferlistning passerar!
+                </li>                
+                <li>
+                    Alla spelare du transferlistat är fr.o.m transferlistningen borta ur ditt lag.
                     För att få behålla en listad spelare måste du alltså vinna budgivningen på honom igen.
-                <li>Dagen efter meddelar du vilka spelare du bjuder på
-                    och hur mycket. Du får dels använda pengar som du fått över vid budgivningen,
-                    dels pengar av värdet på transferlistade spelare.</li>
+                </li>                
+                <li>
+                    OBS! Nyhet: Då transferfönstret öppnar kommer du att kunna logga in och ge bud på tillgängliga spelare. Tillgängliga
+                    spelare är de spelare som inte tillhörde någon deltagare före transferfönstret öppnade samt alla transferlistade spelare.
+                    Du kan alltså även bjuda på de spelare du själv transferlistat.
+                </li>                
                 <li>Precis som vid budgivningen kan man bjuda och "höja" minst 0.5. Alla bud skall således
                     sluta på .0 eller .5. Observera att det högsta bud du kan ge på en spelare måste ta i
                     beaktande att man måste betala minst 0.5 på varje position. Om man har listat tre
                     spelare och har 10.0 att spendera är alltså det högsta budet på en enskild spelare
-                    som kan lyckas 9.0.</li>                
-                <li>Du kan bjuda på spelare som blivit över vid budgivningen eller på nyinköpta eller
-                    inlånade spelare. En spelare räknas som inköpt/inlånad när det finns
-                    en bekräftelse på att spelaren skrivit på för klubben på lagets officiella website.
-                    Listan på tillgängliga spelare spikas senast kl 12.00 på transferlistadagarna. Saknas
-                    det då någon spelare som du är intresserad av är det för sent, du skulle ha påpekat detta
-                    för tävlingsledningen i tid!</li>
-                <li>Du kan bjuda på flera spelare som ersättare till en transferlistad.
-                    Sätt dem i rangordning med bud efter varje spelare. Du kan
-                    bjuda på högst åtta spelare som ersättare till en transferlistad.
-                    Du kan bara lägga ett bud på en och samma spelare som ersättare för en annan spelare.
-                    Du kan dock lägga fler bud på samma spelare som ersättare till flera andra spelare
-                    med samma position.</li>
-                <li>Rangordna även dina transferlistade spelare som du bjuder på ersättare för. Denna
-                    rangordning avgör vilket bud som går igenom först om du har fler lyckade bud på en och
-                    samma spelare som ersättare till fler transferlistade spelare. Den avgör också vilka bud
-                    som skall gå igenom först om du inte har råd att betala för alla lyckade bud.</li>
+                    som kan lyckas 9.0. OBS! Nyhet: Maxbudet kommer att visas på sidan där du skickar in dina bud.</li>                                
+                <li>
+                    OBS! Nyhet: Före deadline för bud passerat kan du ändra och/eller ta bort inskickade bud. Efter att deadline för bud
+                    passerat är det för sent att ändra eller lägga till. Se till att dina bud ser ut som du har tänkt före deadline för
+                    bud passeras.
+                </li>                                
+                <li>
+                    OBS! Nyhet: Alla bud läggs i en hög och om man t.ex behöver två mittfältare så får du de två första mittfältarna
+                    du först lyckas få lyckade bud på.
+                </li>                
+                <li>
+                    OBS! Nyhet: Alla bud läggs i en hög och om man t.ex behöver två mittfältare så får du de två första mittfältarna
+                    du först lyckas få lyckade bud på.
+                </li>                
+                <li>
+                    OBS! Nyhet: Du får bara lägga ett bud på varje spelare. Detta bud är ett "upp till" bud, dvs maxbudet du vill ge för spelaren. 
+                    Om du har det högsta budet blir summan du till slut får betala 0.5 högre än det näst högsta budet. Ex: Deltagare A bjuder 15.0 för 
+                    spelare S. Det näst högsta budet är deltagare B som bjuder 10.0. Deltagare A får spelare S för 10.5.                    
+                </li>
+                <li>
+                    OBS! Nyhet: Spelarna "bjuds ut" i poängordning. Den tillgängliga spelare som har mest poäng på buddagen går som första spelare 
+                    till den deltagare som hade högsta budet på honom. Sedan går den spelaren som hade näst mest poäng till den deltagare som hade 
+                    högsta budet på honom, osv, osv. Om två spelare har lika många poäng bjuds de ut i bokstavsordning. Listan på tillgängliga spelare
+                    för varje transferfönster är sorterad enligt den ordning spelarna kommer att bjudas ut.
+                </li>
                 <li>Vem får spelaren? Den som har högsta budet på en spelare får honom.
                     Om budet är lika får den deltagare som ligger sämre till i
-                    tävlingen spelaren.</li>
+                    tävlingen spelaren.</li>                
+                <li>
+                    OBS! Nyhet: Pengar som spenderats på lyckade bud tas bort från bud som inte hanteras än. Ex: Deltagare A har 15.0 som maxbud och 
+                    bjuder 15.0 på spelare S och 15.0 på spelare P. Spelare S har mer poäng än spelare P och går först och deltagare A får honom för 10.5. 
+                    Efter det är deltager As maxbud 4.5, så budet på spelare P justeras ner till 4.5.
+                </li>
                 <li>Om man inte lyckats få ett enda av de alternativ man bjudit på så
                     får man försöka igen nästa dag. Då får alla som inte fått ersättare skicka
                     in nya bud på spelare för de positioner de fortfarande behöver spelare på. Om
