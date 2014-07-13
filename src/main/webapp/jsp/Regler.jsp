@@ -324,11 +324,11 @@
             <h4>OBS! Nyhet: Bytessystemet</h4>
             <ul>
                 <li>
-                    OBS! Nyhet: Transferfönster öppnar i början av månaderna oktober, december, februari och april.
+                    Transferfönster öppnar i början av månaderna oktober, december, februari och april.
                     Exakta datum meddelas närmare bytestillfället.
                 </li>
                 <li>
-                    OBS! Nyhet: Nör som helst före transferfönstret öppnar kan du logga in på siten och transferlista spelare.
+                    OBS! Nyhet: När som helst före transferfönstret öppnar kan du logga in på siten och transferlista spelare.
                     Spelarna kommer tillsvidare att vara kvar i ditt lag och före transferfönstret stänger kan du kan även ångra 
                     alla transferlistningar du gjort. Endast du själv kan se vilka spelare som finns på din transferlista före
                     transferfönstret öppnar.
@@ -362,10 +362,6 @@
                     du först lyckas få lyckade bud på.
                 </li>                
                 <li>
-                    OBS! Nyhet: Alla bud läggs i en hög och om man t.ex behöver två mittfältare så får du de två första mittfältarna
-                    du först lyckas få lyckade bud på.
-                </li>                
-                <li>
                     OBS! Nyhet: Du får bara lägga ett bud på varje spelare. Detta bud är ett "upp till" bud, dvs maxbudet du vill ge för spelaren. 
                     Om du har det högsta budet blir summan du till slut får betala 0.5 högre än det näst högsta budet. Ex: Deltagare A bjuder 15.0 för 
                     spelare S. Det näst högsta budet är deltagare B som bjuder 10.0. Deltagare A får spelare S för 10.5.                    
@@ -382,7 +378,7 @@
                 <li>
                     OBS! Nyhet: Pengar som spenderats på lyckade bud tas bort från bud som inte hanteras än. Ex: Deltagare A har 15.0 som maxbud och 
                     bjuder 15.0 på spelare S och 15.0 på spelare P. Spelare S har mer poäng än spelare P och går först och deltagare A får honom för 10.5. 
-                    Efter det är deltager As maxbud 4.5, så budet på spelare P justeras ner till 4.5.
+                    Efter det är deltagare As maxbud 4.5, så budet på spelare P justeras ner till 4.5.
                 </li>
                 <li>Om man inte lyckats få ett enda av de alternativ man bjudit på så
                     får man försöka igen nästa dag. Då får alla som inte fått ersättare skicka
