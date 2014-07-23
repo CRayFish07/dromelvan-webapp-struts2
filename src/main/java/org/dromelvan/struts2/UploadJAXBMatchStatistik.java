@@ -32,6 +32,7 @@ import org.dromelvan.struts2.util.SpelareMap;
 import org.dromelvan.struts2.util.SpelareMatchStatistikMap;
 import org.xml.sax.SAXException;
 
+import com.ibm.icu.math.BigDecimal;
 import com.opensymphony.xwork2.validator.annotations.ConversionErrorFieldValidator;
 
 public class UploadJAXBMatchStatistik extends UploadJAXBAction<PLMatch> {
@@ -140,7 +141,11 @@ public class UploadJAXBMatchStatistik extends UploadJAXBAction<PLMatch> {
             }
             spelareMatchStatistik.setDeltog(playerMatchStatistics.getParticipated());
             spelareMatchStatistik.setAssist(playerMatchStatistics.getAssists());
-            spelareMatchStatistik.setRating(playerMatchStatistics.getRating());
+            BigDecimal bigDecimal = BigDecimal.valueOf(playerMatchStatistics.getRating());
+            bigDecimal = bigDecimal.movePointLeft(2);
+            bigDecimal = bigDecimal.setScale(0, BigDecimal.ROUND_HALF_UP);
+            spelareMatchStatistik.setRating(bigDecimal.intValue());
+            spelareMatchStatistik.setWhoScoredRating(playerMatchStatistics.getRating());
             // Det är inte troligt men dock möjligt att en spelare hörde till ett lag då matchens
             // omgång spelades, och sedan hör till det andra laget då en framflyttad match spelas.
             // Därför sätter vi lag från xmlfilen här också

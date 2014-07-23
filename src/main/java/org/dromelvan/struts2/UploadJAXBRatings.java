@@ -16,6 +16,8 @@ import org.dromelvan.struts2.util.OkandSpelare;
 import org.dromelvan.struts2.util.SpelareMap;
 import org.dromelvan.struts2.util.SpelareMatchStatistikMap;
 
+import com.ibm.icu.math.BigDecimal;
+
 public class UploadJAXBRatings extends UploadJAXBMatchStatistik {
 
     /**
@@ -68,7 +70,11 @@ public class UploadJAXBRatings extends UploadJAXBMatchStatistik {
 
         for(PlayerMatchStatistics playerMatchStatistics : team.getPlayers().getPlayerMatchStatistics()) {
             SpelareMatchStatistik spelareMatchStatistik = spelareMatchStatistikMap.get(playerMatchStatistics.getPlayer());
-            spelareMatchStatistik.setRating(playerMatchStatistics.getRating());
+            BigDecimal bigDecimal = BigDecimal.valueOf(playerMatchStatistics.getRating());
+            bigDecimal = bigDecimal.movePointLeft(2);
+            bigDecimal = bigDecimal.setScale(0, BigDecimal.ROUND_HALF_UP);
+            spelareMatchStatistik.setRating(bigDecimal.intValue());
+            spelareMatchStatistik.setWhoScoredRating(playerMatchStatistics.getRating());
             spelareMatchStatistik.setMom(false);
             spelareMatchStatistik.setDeladMom(false);
 

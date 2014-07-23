@@ -35,17 +35,17 @@
                 </struts:url>            
                 <li><struts:a href="%{url}">Ändra datum</struts:a></li>
                 <struts:if test="match.isInlagd">
-                <struts:url var="url" action="UploadRatingsForm">
+                <struts:url var="url" action="UploadJAXBRatingsForm">
                     <struts:param name="matchId" value="match.id"/>
                 </struts:url>            
                 <li><struts:a href="%{url}">Ladda upp ratings</struts:a></li>                                    
-                <struts:url var="url" action="UpdateMatchStatistikForm">
+                <struts:url var="url" action="UpdateJAXBMatchStatistikForm">
                     <struts:param name="matchId" value="match.id"/>
                 </struts:url>            
                 <li><struts:a href="%{url}">Uppdatera statistik</struts:a></li>                
                 </struts:if>
                 <struts:else>
-                <struts:url var="url" action="UploadMatchStatistikForm">
+                <struts:url var="url" action="UploadJAXBMatchStatistikForm">
                     <struts:param name="matchId" value="match.id"/>
                 </struts:url>            
                 <li><struts:a href="%{url}">Ladda upp statistik</struts:a></li>                                    

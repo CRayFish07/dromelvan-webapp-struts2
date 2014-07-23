@@ -260,7 +260,7 @@
                 <param name="actionName">MatchStatistik</param>
                 <param name="matchId">${match.id}</param>
             </result>
-            <result name="input">/jsp/UploadMatchStatistikForm.jsp</result>            
+            <result name="input">/jsp/UploadJAXBMatchStatistikForm.jsp</result>            
         </action>
 
         <!-- 
@@ -286,7 +286,7 @@
                 <param name="actionName">MatchStatistik</param>
                 <param name="matchId">${match.id}</param>
             </result>
-            <result name="input">/jsp/UpdateMatchStatistikForm.jsp</result>            
+            <result name="input">/jsp/UpdateJAXBMatchStatistikForm.jsp</result>            
         </action>
 
         <!-- 
@@ -312,7 +312,7 @@
                 <param name="actionName">MatchStatistik</param>
                 <param name="matchId">${match.id}</param>
             </result>
-            <result name="input">/jsp/UploadRatingsForm.jsp</result>            
+            <result name="input">/jsp/UploadJAXBRatingsForm.jsp</result>            
         </action>
 
         <!-- 
