@@ -31,5 +31,6 @@ public class SpelareMatchStatistikMap extends HashMap<String,SpelareMatchStatist
 
     public void add(SpelareMatchStatistik spelareMatchStatistik) {
         put(spelareMatchStatistik.getSpelare().getNamn(),spelareMatchStatistik);
+        put(String.valueOf(spelareMatchStatistik.getSpelare().getWhoScoredId()),spelareMatchStatistik);
     }
 }

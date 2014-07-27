@@ -31,5 +31,6 @@ public class SpelareMap extends HashMap<String,Spelare> {
 
     public void add(Spelare spelare) {
         put(spelare.getNamn(),spelare);
+        put(String.valueOf(spelare.getWhoScoredId()),spelare);
     }
 }

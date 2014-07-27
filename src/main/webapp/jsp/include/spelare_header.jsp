@@ -43,6 +43,11 @@
                         <td>Kort (G/R): <struts:property value="spelareSasongStatistik.antalGultKort"/>/<struts:property value="spelareSasongStatistik.antalRottKort"/></td>
                         <td>Pris: <struts:property value="spelareSasongStatistik.pris"/></td>
                     </tr>
-                    
+                    <tr>                    
+                        <td>
+                            WhoScored ID: <a href="http://www.whoscored.com/Players/<struts:property value="spelareSasongStatistik.spelare.whoScoredId"/>"><struts:property value="spelareSasongStatistik.spelare.whoScoredId"/></a>
+                        </td>
+                        <td>&nbsp;</td>
+                    </tr>                    
                 </table>
             </div>

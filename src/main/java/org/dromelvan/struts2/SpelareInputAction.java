@@ -32,6 +32,7 @@ public abstract class SpelareInputAction extends DromelvaAdminAction implements 
 	private int lagId;
 	private int deltagareId;
 	private int position;
+	private int whoScoredId;
 
 	private List<Lag> lagList;
 	private List<Deltagare> deltagareList;
@@ -65,6 +66,10 @@ public abstract class SpelareInputAction extends DromelvaAdminAction implements 
                 if(getSpelare() == null || spelare.getId() != getSpelare().getId()) {
                     addFieldError("namn","Spelare med givet namn finns redan");
                 }
+            }
+            spelare = getDAOFactory().getSpelareDAO().findByWhoScoredId(getWhoScoredId());
+            if(spelare != null && spelare.getId() != getSpelare().getId()) {
+                addFieldError("whoScoredId","Spelare med givet whoScoredId finns redan");
             }
         }
     }
@@ -116,7 +121,15 @@ public abstract class SpelareInputAction extends DromelvaAdminAction implements 
 		this.position = position;
 	}
 
-	public List<Lag> getLagList() {
+	@ConversionErrorFieldValidator(message = "Felaktigt format på whoScoredId.")
+	public int getWhoScoredId() {
+        return whoScoredId;
+    }
+    public void setWhoScoredId(int whoScoredId) {
+        this.whoScoredId = whoScoredId;
+    }
+
+    public List<Lag> getLagList() {
         return lagList;
 	}
 	public List<Deltagare> getDeltagareList() {

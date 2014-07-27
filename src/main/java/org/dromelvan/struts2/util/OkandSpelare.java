@@ -16,7 +16,9 @@ public class OkandSpelare extends DromelvaObjekt {
 	 */
 	private static final long serialVersionUID = 4842794752668877967L;
 	private String namn;
+	private int whoScoredId;
     private String lag;
+    private Spelare sammaWhoScoredIdSpelare;
     private List<Spelare> alternativ;
 
     public String getNamn() {
@@ -42,6 +44,13 @@ public class OkandSpelare extends DromelvaObjekt {
     	return namn;
     }
 
+    public int getWhoScoredId() {
+        return whoScoredId;
+    }
+    public void setWhoScoredId(int whoScoredId) {
+        this.whoScoredId = whoScoredId;
+    }
+
     public String getLag() {
 		return lag;
 	}
@@ -49,7 +58,14 @@ public class OkandSpelare extends DromelvaObjekt {
 		this.lag = lag;
 	}
 
-	public List<Spelare> getAlternativ() {
+	public Spelare getSammaWhoScoredIdSpelare() {
+        return sammaWhoScoredIdSpelare;
+    }
+    public void setSammaWhoScoredIdSpelare(Spelare sammaWhoScoredIdSpelare) {
+        this.sammaWhoScoredIdSpelare = sammaWhoScoredIdSpelare;
+    }
+
+    public List<Spelare> getAlternativ() {
         return alternativ;
     }
     public void setAlternativ(List<Spelare> alternativ) {

@@ -79,6 +79,7 @@
                             <col class="lag_column"/>
                             <col class="deltagare_column"/>
                             <col class="position_column"/>
+                            <col class="whoscored_id_column"/>
                             <col class="pris_column"/>                            
                         </colgroup>
                         <struts:if test="hasFieldErrors">
@@ -92,6 +93,9 @@
                                 <struts:property value="%{getFieldErrorMessage('position')}"/>
                             </td>
                             <td class="error">
+                                <struts:property value="%{getFieldErrorMessage('whoScoredId')}"/>
+                            </td>                                                        
+                            <td class="error">
                                 <struts:property value="%{getFieldErrorMessage('pris')}"/>
                             </td>                            
                         </tr>
@@ -102,6 +106,7 @@
                             <th>Lag</th>
                             <th>Deltagare</th>
                             <th>Position</th>
+                            <th>WhoScoredId</th>
                             <th>Pris</th>
                         </tr>
                         <tr>
@@ -123,6 +128,9 @@
                                <struts:select name="position" list="positionList" listKey="%{ordinal()}" size="1"
                                               required="true" value="%{position}"/>                            
                             </td>
+                            <td>
+                                <struts:textfield cssClass="text" name="whoScoredId"/>
+                            </td>                                                        
                             <td>
                                 <struts:textfield cssClass="prisText" name="pris"/>
                             </td>                            

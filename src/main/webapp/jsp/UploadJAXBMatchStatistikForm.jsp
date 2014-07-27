@@ -66,11 +66,23 @@
                 </p>                 
                 <struts:iterator value="okandSpelareSet">
                     
-                <h4><struts:property value="namn"/> (<struts:property value="lag"/>)</h4>
+                <h4><a style="font-weight: bold;" href="http://www.whoscored.com/Players/<struts:property value="whoScoredId"/>"><struts:property value="whoScoredId"/></a>: <struts:property value="namn"/> (<struts:property value="lag"/>)</h4>
+                <struts:if test="sammaWhoScoredIdSpelare != null">
+                <p>
+                    En spelare med samma whoScoredId existerar redan men är registrerad för ett lag som inte spelar den aktuella matchen:
+                </p>
+                    <struts:url var="url" action="EditSpelareForm">
+                        <struts:param name="spelareId" value="sammaWhoScoredIdSpelare.id"/>
+                    </struts:url>                                                                    
+                    <a href="http://www.whoscored.com/Players/<struts:property value="sammaWhoScoredIdSpelare.whoScoredId"/>"><struts:property value="sammaWhoScoredIdSpelare.whoScoredId"/></a>: <struts:a href="%{url}"><struts:property value="sammaWhoScoredIdSpelare.namn"/></struts:a> (<struts:property value="sammaWhoScoredIdSpelare.lag.kod"/>)
+                <p>
+                </p>
+                </struts:if>                
                 <p>
                     <struts:url var="url" action="InsertSpelareForm">
                         <struts:param name="fornamn" value="fornamn"/>
                         <struts:param name="efternamn" value="efternamn"/>
+                        <struts:param name="whoScoredId" value="whoScoredId"/>                        
                     </struts:url>                            
                     Lägg in en <struts:a href="%{url}">ny spelare</struts:a>.
                 </p>
@@ -82,7 +94,7 @@
                     <struts:url var="url" action="EditSpelareForm">
                         <struts:param name="spelareId" value="id"/>
                     </struts:url>                                                                    
-                    <li><struts:a href="%{url}"><struts:property value="namn"/></struts:a> (<struts:property value="lag.kod"/>)</li>
+                    <li><a href="http://www.whoscored.com/Players/<struts:property value="whoScoredId"/>"><struts:property value="whoScoredId"/></a>: <struts:a href="%{url}"><struts:property value="namn"/></struts:a> (<struts:property value="lag.kod"/>)</li>
                     </struts:iterator>
                 </ul>
                 </struts:iterator>            

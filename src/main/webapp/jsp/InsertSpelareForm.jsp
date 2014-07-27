@@ -50,6 +50,7 @@
                             <col class="efternamn_column"/>
                             <col class="lag_column"/>
                             <col class="position_column"/>
+                            <col class="whoscored_id_column"/>
                         </colgroup>
                         <struts:if test="hasFieldErrors">
                         <tr>
@@ -60,6 +61,9 @@
                             <td class="error">
                                 <struts:property value="%{getFieldErrorMessage('position')}"/>
                             </td>
+                            <td class="error">
+                                <struts:property value="%{getFieldErrorMessage('whoScoredId')}"/>
+                            </td>                            
                         </tr>
                         </struts:if>
                         <tr>
@@ -67,6 +71,7 @@
                             <th class="spelare">Efternamn</th>
                             <th>Lag</th>
                             <th>Position</th>
+                            <th>WhoScoredId</th>
                         </tr>
                         <tr>
                             <td>
@@ -83,6 +88,9 @@
                                <struts:select name="position" list="positionList" listKey="%{ordinal()}" size="1"
                                               required="true" value="%{position}"/>                            
                             </td>
+                            <td>
+                                <struts:textfield cssClass="text" name="whoScoredId"/>
+                            </td>                            
                         </tr>
                     </table>
                     

@@ -36,6 +36,7 @@ public class EditSpelare extends SpelareInputAction {
         setLagId(getSpelare().getLag().getId());
         setDeltagareId(getSpelare().getDeltagare().getId());
         setPosition(getSpelare().getPosition().ordinal());
+        setWhoScoredId(getSpelare().getWhoScoredId());
 
         Sasong sasong = getDAOFactory().getSasongDAO().findById(getDefaultSasongId());
         SpelareSasong spelareSasong = getDAOFactory().getSpelareSasongDAO().findBySpelareOchSasong(getSpelare(),sasong);
@@ -59,6 +60,7 @@ public class EditSpelare extends SpelareInputAction {
         spelare.setLag(lag);
 		spelare.setDeltagare(deltagare);
 		spelare.setPosition(Position.values()[getPosition()]);
+		spelare.setWhoScoredId(getWhoScoredId());
         spelare = getDAOFactory().getSpelareDAO().save(spelare);
         setSpelare(spelare);
 

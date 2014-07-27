@@ -25,6 +25,7 @@ public class InsertSpelare extends SpelareInputAction {
         spelare.setLag(lag);
 		spelare.setDeltagare(deltagare);
 		spelare.setPosition(Position.values()[getPosition()]);
+		spelare.setWhoScoredId(getWhoScoredId());
         spelare = getDAOFactory().getSpelareDAO().save(spelare);
         setSpelare(spelare);
 
