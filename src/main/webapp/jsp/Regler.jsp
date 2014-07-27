@@ -155,25 +155,25 @@
                     <td class="poanggrund">Rating 10</td>
                     <td>5</td>
                     <td class="poanggrund">1 insläppt mål</td>
-                    <td>1</td>
+                    <td>OBS! Nyhet: 0</td>
                 </tr>
                 <tr>
                     <td class="poanggrund">Rating 9</td>
                     <td>3</td>
                     <td class="poanggrund">2 insläppta mål</td>
-                    <td>0</td>
+                    <td>OBS! Nyhet: -2</td>
                 </tr>
                 <tr>
                     <td class="poanggrund">Rating 8</td>
                     <td>2</td>
                     <td class="poanggrund">3 insläppta mål</td>
-                    <td>-1</td>
+                    <td>OBS! Nyhet: -3</td>
                 </tr>
                 <tr>
                     <td class="poanggrund">Rating 7</td>
                     <td>1</td>
                     <td class="poanggrund">4 insläppta mål</td>
-                    <td>-2</td>
+                    <td>OBS! Nyhet: -4</td>
                 </tr>
                 <tr>
                     <td class="poanggrund">Ingen rating</td>
@@ -294,7 +294,7 @@
                 <li>Preliminärt datum för budgivningen är någon gång just före säsongen börjar. Plats och
                     tidpunkt meddelas senare.</li>
                 <li>Kom i god tid! Laget man då skrapat ihop är i aktion första
-                    gången lördagen den 17 augusti. Preliminär spelarlista finns
+                    gången lördagen den 16 augusti. Preliminär spelarlista finns
                     att tillgå på denna website.</li>
                 <li>Ordinarie lista ges vid budgivningen.</li>
                 <li>Antalet deltagare i tävlingen kan vara högst 20 eftersom det
