@@ -1,5 +1,6 @@
 package org.dromelvan.struts2;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -32,251 +33,256 @@ import org.dromelvan.struts2.util.SpelareMap;
 import org.dromelvan.struts2.util.SpelareMatchStatistikMap;
 import org.xml.sax.SAXException;
 
-import com.ibm.icu.math.BigDecimal;
 import com.opensymphony.xwork2.validator.annotations.ConversionErrorFieldValidator;
 
 public class UploadJAXBMatchStatistik extends UploadJAXBAction<PLMatch> {
 
-    /**
+	/**
      *
      */
-    private static final long serialVersionUID = 8540927196122972506L;
-    private int matchId;
-    private Match match;
+	private static final long serialVersionUID = 8540927196122972506L;
+	private int matchId;
+	private Match match;
 
-    @ConversionErrorFieldValidator(message = "Felaktigt format på matchId.")
-    public int getMatchId() {
-        return matchId;
-    }
-    public void setMatchId(int matchId) {
-        this.matchId = matchId;
-    }
+	@ConversionErrorFieldValidator(message = "Felaktigt format på matchId.")
+	public int getMatchId() {
+		return matchId;
+	}
 
-    public Match getMatch() {
-        return match;
-    }
-    protected void setMatch(Match match) {
-        this.match = match;
-    }
+	public void setMatchId(int matchId) {
+		this.matchId = matchId;
+	}
 
-    public String input() {
-        clearWorkFlowObject();
-        getSessionManager().beginTransaction();
-        setMatch(getDAOFactory().getMatchDAO().findById(getMatchId()));
+	public Match getMatch() {
+		return match;
+	}
 
-        setWorkFlowObject(getMatch());
-        return INPUT;
-    }
+	protected void setMatch(Match match) {
+		this.match = match;
+	}
 
-    public boolean validateWorkFlowObject() {
-        try {
-            setMatch((Match)getWorkFlowObject());
-        } catch(ClassCastException e) {}
-        return getMatch() != null;
-    }
+	@Override
+	public String input() {
+		clearWorkFlowObject();
+		getSessionManager().beginTransaction();
+		setMatch(getDAOFactory().getMatchDAO().findById(getMatchId()));
 
-    public String doExecute() {
-        if(getMatch().getSpelareMatchStatistik().isEmpty()) {
-            addActionError("Statistik för omgången har inte lagts in. Detta måste " +
-                           "göras före matchstatistik kan laddas upp.");
-            return ERROR;
-        } else if(getMatch().getIsInlagd()) {
-            addActionError("Statistik för matchen är redan inlagd.");
-            return ERROR;
-        }
+		setWorkFlowObject(getMatch());
+		return INPUT;
+	}
 
-        SpelareMap spelareMap = new SpelareMap(getDAOFactory().getSpelareDAO().findByLag(getMatch().getHemmaLag()));
-        spelareMap.putAll(getDAOFactory().getSpelareDAO().findByLag(getMatch().getBortaLag()));
+	@Override
+	public boolean validateWorkFlowObject() {
+		try {
+			setMatch((Match) getWorkFlowObject());
+		} catch (ClassCastException e) {
+		}
+		return getMatch() != null;
+	}
 
-        SpelareMatchStatistikMap spelareMatchStatistikMap = new SpelareMatchStatistikMap();
-        for(SpelareMatchStatistik spelareMatchStatistik : getDAOFactory().getSpelareMatchStatistikDAO().findByMatch(getMatch())) {
-            // Sätt deltog ej som default på alla spelare först så räcker det med att hantera de
-            // som verkligen finns i statistikfilen för att få rätt status på allt
-            spelareMatchStatistik.setDeltog(0);
-            spelareMatchStatistikMap.add(spelareMatchStatistik);
-        }
+	@Override
+	public String doExecute() {
+		if (getMatch().getSpelareMatchStatistik().isEmpty()) {
+			addActionError("Statistik för omgången har inte lagts in. Detta måste " +
+					"göras före matchstatistik kan laddas upp.");
+			return ERROR;
+		} else if (getMatch().getIsInlagd()) {
+			addActionError("Statistik för matchen är redan inlagd.");
+			return ERROR;
+		}
 
-        Sasong sasong = getMatch().getOmgang().getTavling().getSasong();
-        PLMatch plMatch = getUploadObject();
+		SpelareMap spelareMap = new SpelareMap(getDAOFactory().getSpelareDAO().findByLag(getMatch().getHemmaLag()));
+		spelareMap.putAll(getDAOFactory().getSpelareDAO().findByLag(getMatch().getBortaLag()));
 
-        List<Mal> malList = updatePLTeam(plMatch.getHomeTeam(), sasong, getMatch().getHemmaLag(), spelareMap, spelareMatchStatistikMap);
-        malList.addAll(updatePLTeam(plMatch.getAwayTeam(), sasong, getMatch().getBortaLag(), spelareMap, spelareMatchStatistikMap));
+		SpelareMatchStatistikMap spelareMatchStatistikMap = new SpelareMatchStatistikMap();
+		for (SpelareMatchStatistik spelareMatchStatistik : getDAOFactory().getSpelareMatchStatistikDAO().findByMatch(getMatch())) {
+			// Sätt deltog ej som default på alla spelare först så räcker det med att hantera de
+			// som verkligen finns i statistikfilen för att få rätt status på allt
+			spelareMatchStatistik.setDeltog(0);
+			spelareMatchStatistikMap.add(spelareMatchStatistik);
+		}
 
-        DeOmgang deOmgang = getDAOFactory().getDeOmgangDAO().findByOmgang(getMatch().getOmgang());
-        Collection<DeMatch> deMatcher = new ArrayList<DeMatch>(deOmgang.getDeMatcher());
-        for(DeMatch deMatch : deMatcher) {
-            deMatch.raknaPoang();
-        }
+		Sasong sasong = getMatch().getOmgang().getTavling().getSasong();
+		PLMatch plMatch = getUploadObject();
 
-        getDAOFactory().getMalDAO().saveBatch(malList);
-        getDAOFactory().getSpelareMatchStatistikDAO().saveBatch(spelareMatchStatistikMap.values());
-        getDAOFactory().getDeMatchDAO().saveBatch(deMatcher);
+		List<Mal> malList = updatePLTeam(plMatch.getHomeTeam(), sasong, getMatch().getHemmaLag(), spelareMap, spelareMatchStatistikMap);
+		malList.addAll(updatePLTeam(plMatch.getAwayTeam(), sasong, getMatch().getBortaLag(), spelareMap, spelareMatchStatistikMap));
 
-        getSessionManager().commitTransaction();
-        getSessionManager().evictCache();
-        clearWorkFlowObject();
+		DeOmgang deOmgang = getDAOFactory().getDeOmgangDAO().findByOmgang(getMatch().getOmgang());
+		Collection<DeMatch> deMatcher = new ArrayList<DeMatch>(deOmgang.getDeMatcher());
+		for (DeMatch deMatch : deMatcher) {
+			deMatch.raknaPoang();
+		}
 
-        return SUCCESS;
-    }
+		getDAOFactory().getMalDAO().saveBatch(malList);
+		getDAOFactory().getSpelareMatchStatistikDAO().saveBatch(spelareMatchStatistikMap.values());
+		getDAOFactory().getDeMatchDAO().saveBatch(deMatcher);
 
-    private List<Mal> updatePLTeam(PLTeam team, Sasong sasong, Lag lag, SpelareMap spelareMap, SpelareMatchStatistikMap spelareMatchStatistikMap) {
-        Set<SpelareMatchStatistik> moms = new HashSet<SpelareMatchStatistik>();
-        int maxRating = 0;
+		getSessionManager().commitTransaction();
+		getSessionManager().evictCache();
+		clearWorkFlowObject();
 
-        for(PlayerMatchStatistics playerMatchStatistics : team.getPlayers().getPlayerMatchStatistics()) {
-            SpelareMatchStatistik spelareMatchStatistik = spelareMatchStatistikMap.get(String.valueOf(playerMatchStatistics.getWhoScoredId()));
-            if(spelareMatchStatistik == null) {
-                Spelare spelare = spelareMap.get(String.valueOf(playerMatchStatistics.getWhoScoredId()));
-                SpelareSasong spelareSasong = getDAOFactory().getSpelareSasongDAO().findBySpelareOchSasong(spelare,sasong);
+		return SUCCESS;
+	}
 
-                spelareMatchStatistik = new SpelareMatchStatistik();
-                spelareMatchStatistik.setSpelare(spelare);
-                spelareMatchStatistik.setMatch(getMatch());
-                // Om en match flyttats framåt skall en spelare som bytt lag inte kunna spela två
-                // matcher för en deltagare en omgång. Det är alltid matchen som spelaren läggs in
-                // för då omgången spikas som skall räknas. Därför sätter vi deltagare till ingen
-                spelareMatchStatistik.setDeltagare(getDAOFactory().getDeltagareDAO().findById(1));
-                spelareMatchStatistik.setPosition(spelareSasong.getPosition());
-                spelareMatchStatistikMap.add(spelareMatchStatistik);
-            }
-            spelareMatchStatistik.setDeltog(playerMatchStatistics.getParticipated());
-            spelareMatchStatistik.setAssist(playerMatchStatistics.getAssists());
-            BigDecimal bigDecimal = BigDecimal.valueOf(playerMatchStatistics.getRating());
-            bigDecimal = bigDecimal.movePointLeft(2);
-            bigDecimal = bigDecimal.setScale(0, BigDecimal.ROUND_HALF_UP);
-            spelareMatchStatistik.setRating(bigDecimal.intValue());
-            spelareMatchStatistik.setWhoScoredRating(playerMatchStatistics.getRating());
-            // Det är inte troligt men dock möjligt att en spelare hörde till ett lag då matchens
-            // omgång spelades, och sedan hör till det andra laget då en framflyttad match spelas.
-            // Därför sätter vi lag från xmlfilen här också
-            spelareMatchStatistik.setLag(lag);
+	private List<Mal> updatePLTeam(PLTeam team, Sasong sasong, Lag lag, SpelareMap spelareMap, SpelareMatchStatistikMap spelareMatchStatistikMap) {
+		Set<SpelareMatchStatistik> moms = new HashSet<SpelareMatchStatistik>();
+		int maxRating = 0;
 
-            if(spelareMatchStatistik.getRating() == maxRating) {
-                moms.add(spelareMatchStatistik);
-            } else if(spelareMatchStatistik.getRating() > maxRating) {
-                maxRating = spelareMatchStatistik.getRating();
-                moms.clear();
-                moms.add(spelareMatchStatistik);
-            }
-        }
+		for (PlayerMatchStatistics playerMatchStatistics : team.getPlayers().getPlayerMatchStatistics()) {
+			SpelareMatchStatistik spelareMatchStatistik = spelareMatchStatistikMap.get(String.valueOf(playerMatchStatistics.getWhoScoredId()));
+			if (spelareMatchStatistik == null) {
+				Spelare spelare = spelareMap.get(String.valueOf(playerMatchStatistics.getWhoScoredId()));
+				SpelareSasong spelareSasong = getDAOFactory().getSpelareSasongDAO().findBySpelareOchSasong(spelare, sasong);
 
-        for(SpelareMatchStatistik spelareMatchStatistik : moms) {
-            if(moms.size() == 1) {
-                spelareMatchStatistik.setMom(true);
-            } else if(moms.size() == 2) {
-                spelareMatchStatistik.setDeladMom(true);
-            }
-        }
+				spelareMatchStatistik = new SpelareMatchStatistik();
+				spelareMatchStatistik.setSpelare(spelare);
+				spelareMatchStatistik.setMatch(getMatch());
+				// Om en match flyttats framåt skall en spelare som bytt lag inte kunna spela två
+				// matcher för en deltagare en omgång. Det är alltid matchen som spelaren läggs in
+				// för då omgången spikas som skall räknas. Därför sätter vi deltagare till ingen
+				spelareMatchStatistik.setDeltagare(getDAOFactory().getDeltagareDAO().findById(1));
+				spelareMatchStatistik.setPosition(spelareSasong.getPosition());
+				spelareMatchStatistikMap.add(spelareMatchStatistik);
+			}
+			spelareMatchStatistik.setDeltog(playerMatchStatistics.getParticipated());
+			spelareMatchStatistik.setAssist(playerMatchStatistics.getAssists());
+			BigDecimal bigDecimal = BigDecimal.valueOf(playerMatchStatistics.getRating());
+			bigDecimal = bigDecimal.movePointLeft(2);
+			bigDecimal = bigDecimal.setScale(0, BigDecimal.ROUND_HALF_UP);
+			spelareMatchStatistik.setRating(bigDecimal.intValue());
+			spelareMatchStatistik.setWhoScoredRating(playerMatchStatistics.getRating());
+			// Det är inte troligt men dock möjligt att en spelare hörde till ett lag då matchens
+			// omgång spelades, och sedan hör till det andra laget då en framflyttad match spelas.
+			// Därför sätter vi lag från xmlfilen här också
+			spelareMatchStatistik.setLag(lag);
 
-        for(Card card : team.getCards().getCard()) {
-            SpelareMatchStatistik spelareMatchStatistik = spelareMatchStatistikMap.get(String.valueOf(card.getWhoScoredId()));
-            if(card.getType() == CardType.YELLOW) {
-                spelareMatchStatistik.setGultKortTid(card.getTime());
-            } else {
-                spelareMatchStatistik.setRottKortTid(card.getTime());
-            }
-        }
+			if (spelareMatchStatistik.getRating() == maxRating) {
+				moms.add(spelareMatchStatistik);
+			} else if (spelareMatchStatistik.getRating() > maxRating) {
+				maxRating = spelareMatchStatistik.getRating();
+				moms.clear();
+				moms.add(spelareMatchStatistik);
+			}
+		}
 
-        for(Substitution substitution : team.getSubstitutions().getSubstitution()) {
-            spelareMatchStatistikMap.get(String.valueOf(substitution.getPlayerOutWhoScoredId())).setUtbyttTid(substitution.getTime());
-            spelareMatchStatistikMap.get(String.valueOf(substitution.getPlayerInWhoScoredId())).setInbyttTid(substitution.getTime());
-        }
+		for (SpelareMatchStatistik spelareMatchStatistik : moms) {
+			if (moms.size() == 1) {
+				spelareMatchStatistik.setMom(true);
+			} else if (moms.size() == 2) {
+				spelareMatchStatistik.setDeladMom(true);
+			}
+		}
 
-        List<Mal> malList = new ArrayList<Mal>();
-        for(Goal goal : team.getGoals().getGoal()) {
-            Mal mal = new Mal();
-            SpelareMatchStatistik spelareMatchStatistik = spelareMatchStatistikMap.get(String.valueOf(goal.getWhoScoredId()));
-            mal.setSpelare(spelareMatchStatistik.getSpelare());
-            mal.setMatch(getMatch());
-            mal.setStraffspark(goal.isPenalty());
-            mal.setSjalvmal(goal.isOwnGoal());
-            mal.setTid(goal.getTime());
-            mal.setLag(lag);
+		for (Card card : team.getCards().getCard()) {
+			SpelareMatchStatistik spelareMatchStatistik = spelareMatchStatistikMap.get(String.valueOf(card.getWhoScoredId()));
+			if (card.getType() == CardType.YELLOW) {
+				spelareMatchStatistik.setGultKortTid(card.getTime());
+			} else {
+				spelareMatchStatistik.setRottKortTid(card.getTime());
+			}
+		}
 
-            if(!mal.isSjalvmal()) {
-                spelareMatchStatistik.setMal(spelareMatchStatistik.getMal() + 1);
-            } else {
-                spelareMatchStatistik.setSjalvmal(spelareMatchStatistik.getSjalvmal() + 1);
-            }
-            malList.add(mal);
-            // Måste göra detta för att räkna poäng rätt för försvarare
-            if(mal.getLag().equals(getMatch().getHemmaLag())) {
-                getMatch().setAntalMalHemmaLag(getMatch().getAntalMalHemmaLag() + 1);
-            } else {
-                getMatch().setAntalMalBortaLag(getMatch().getAntalMalBortaLag() + 1);
-            }
-        }
+		for (Substitution substitution : team.getSubstitutions().getSubstitution()) {
+			spelareMatchStatistikMap.get(String.valueOf(substitution.getPlayerOutWhoScoredId())).setUtbyttTid(substitution.getTime());
+			spelareMatchStatistikMap.get(String.valueOf(substitution.getPlayerInWhoScoredId())).setInbyttTid(substitution.getTime());
+		}
 
-        for(SpelareMatchStatistik spelareMatchStatistik : spelareMatchStatistikMap.values()) {
-            // Kan få lazy instantiation exception i raknaPoang av någon anledning jag inte förstår nu
-            // för vissa spelare om vi inte sätter matchen så här
-            spelareMatchStatistik.setMatch(getMatch());
-            spelareMatchStatistik.setPoang(spelareMatchStatistik.raknaPoang());
-        }
+		List<Mal> malList = new ArrayList<Mal>();
+		for (Goal goal : team.getGoals().getGoal()) {
+			Mal mal = new Mal();
+			SpelareMatchStatistik spelareMatchStatistik = spelareMatchStatistikMap.get(String.valueOf(goal.getWhoScoredId()));
+			mal.setSpelare(spelareMatchStatistik.getSpelare());
+			mal.setMatch(getMatch());
+			mal.setStraffspark(goal.isPenalty());
+			mal.setSjalvmal(goal.isOwnGoal());
+			mal.setTid(goal.getTime());
+			mal.setLag(lag);
 
-        return malList;
-    }
+			if (!mal.isSjalvmal()) {
+				spelareMatchStatistik.setMal(spelareMatchStatistik.getMal() + 1);
+			} else {
+				spelareMatchStatistik.setSjalvmal(spelareMatchStatistik.getSjalvmal() + 1);
+			}
+			malList.add(mal);
+			// Måste göra detta för att räkna poäng rätt för försvarare
+			if (mal.getLag().equals(getMatch().getHemmaLag())) {
+				getMatch().setAntalMalHemmaLag(getMatch().getAntalMalHemmaLag() + 1);
+			} else {
+				getMatch().setAntalMalBortaLag(getMatch().getAntalMalBortaLag() + 1);
+			}
+		}
 
-    @Override
-    protected JAXBUtil<PLMatch> getJAXBUtil() throws SAXException, JAXBException {
-        return new PLMatchJAXBUtil();
-    }
+		for (SpelareMatchStatistik spelareMatchStatistik : spelareMatchStatistikMap.values()) {
+			// Kan få lazy instantiation exception i raknaPoang av någon anledning jag inte förstår nu
+			// för vissa spelare om vi inte sätter matchen så här
+			spelareMatchStatistik.setMatch(getMatch());
+			spelareMatchStatistik.setPoang(spelareMatchStatistik.raknaPoang());
+		}
 
-    @Override
-    protected void validateJAXBObject(PLMatch plMatch) {
-        getSessionManager().beginTransaction();
-        setMatch(getDAOFactory().getMatchDAO().findById(getMatch().getId()));
+		return malList;
+	}
 
-        if(!getMatch().getHemmaLag().getNamn().equalsIgnoreCase(plMatch.getHomeTeam().getName()) ||
-           !getMatch().getBortaLag().getNamn().equalsIgnoreCase(plMatch.getAwayTeam().getName())) {
-            addActionError("Filen innehåller statistik för en annan match (" +
-                           plMatch.getHomeTeam().getName() + " - " + plMatch.getAwayTeam().getName() + ").");
-        } else {
-            validatePLTeam(plMatch.getHomeTeam());
-            validatePLTeam(plMatch.getAwayTeam());
+	@Override
+	protected JAXBUtil<PLMatch> getJAXBUtil() throws SAXException, JAXBException {
+		return new PLMatchJAXBUtil();
+	}
 
-            if(!getOkandSpelareSet().isEmpty()) {
-                addActionError("Okända spelare.");
-            }
-        }
-    }
+	@Override
+	protected void validateJAXBObject(PLMatch plMatch) {
+		getSessionManager().beginTransaction();
+		setMatch(getDAOFactory().getMatchDAO().findById(getMatch().getId()));
 
-    protected void validatePLTeam(PLTeam plTeam) {
-        SpelareDAO spelareDAO = getDAOFactory().getSpelareDAO();
-        SpelareMap kandaSpelareMap = new SpelareMap(spelareDAO.findByLag(getMatch().getHemmaLag()));
-        kandaSpelareMap.putAll(spelareDAO.findByLag(getMatch().getBortaLag()));
+		if (!getMatch().getHemmaLag().getNamn().equalsIgnoreCase(plMatch.getHomeTeam().getName()) ||
+				!getMatch().getBortaLag().getNamn().equalsIgnoreCase(plMatch.getAwayTeam().getName())) {
+			addActionError("Filen innehåller statistik för en annan match (" +
+					plMatch.getHomeTeam().getName() + " - " + plMatch.getAwayTeam().getName() + ").");
+		} else {
+			validatePLTeam(plMatch.getHomeTeam());
+			validatePLTeam(plMatch.getAwayTeam());
 
-        for(PlayerMatchStatistics playerMatchStatistics : plTeam.getPlayers().getPlayerMatchStatistics()) {
-            if(kandaSpelareMap.get(String.valueOf(playerMatchStatistics.getWhoScoredId())) == null) {
-                OkandSpelare okandSpelare = new OkandSpelare();
-                okandSpelare.setNamn(playerMatchStatistics.getPlayer());
-                okandSpelare.setWhoScoredId(playerMatchStatistics.getWhoScoredId().intValue());
-                okandSpelare.setLag(plTeam.getName());
-                okandSpelare.setSammaWhoScoredIdSpelare(spelareDAO.findByWhoScoredId(playerMatchStatistics.getWhoScoredId().intValue()));
-                okandSpelare.setAlternativ(spelareDAO.findByNamnLike(playerMatchStatistics.getPlayer()));
-                addOkandSpelare(okandSpelare);
-            }
-        }
+			if (!getOkandSpelareSet().isEmpty()) {
+				addActionError("Okända spelare.");
+			}
+		}
+	}
 
-        for(Goal goal : plTeam.getGoals().getGoal()) {
-            if(kandaSpelareMap.get(String.valueOf(goal.getWhoScoredId())) == null) {
-                addActionError("Okänd målgörare: " + goal.getPlayer());
-            }
-        }
+	protected void validatePLTeam(PLTeam plTeam) {
+		SpelareDAO spelareDAO = getDAOFactory().getSpelareDAO();
+		SpelareMap kandaSpelareMap = new SpelareMap(spelareDAO.findByLag(getMatch().getHemmaLag()));
+		kandaSpelareMap.putAll(spelareDAO.findByLag(getMatch().getBortaLag()));
 
-        for(Card card : plTeam.getCards().getCard()) {
-            if(kandaSpelareMap.get(String.valueOf(card.getWhoScoredId())) == null) {
-                addActionError("Okänd varnad/utvisad spelare: " + card.getPlayer());
-            }
-        }
+		for (PlayerMatchStatistics playerMatchStatistics : plTeam.getPlayers().getPlayerMatchStatistics()) {
+			if (kandaSpelareMap.get(String.valueOf(playerMatchStatistics.getWhoScoredId())) == null) {
+				OkandSpelare okandSpelare = new OkandSpelare();
+				okandSpelare.setNamn(playerMatchStatistics.getPlayer());
+				okandSpelare.setWhoScoredId(playerMatchStatistics.getWhoScoredId().intValue());
+				okandSpelare.setLag(plTeam.getName());
+				okandSpelare.setSammaWhoScoredIdSpelare(spelareDAO.findByWhoScoredId(playerMatchStatistics.getWhoScoredId().intValue()));
+				okandSpelare.setAlternativ(spelareDAO.findByNamnLike(playerMatchStatistics.getPlayer()));
+				addOkandSpelare(okandSpelare);
+			}
+		}
 
-        for(Substitution substitution : plTeam.getSubstitutions().getSubstitution()) {
-            if(kandaSpelareMap.get(String.valueOf(substitution.getPlayerOutWhoScoredId())) == null) {
-                addActionError("Okänd utbytt spelare: " + substitution.getPlayerOut());
-            }
-            if(kandaSpelareMap.get(String.valueOf(substitution.getPlayerInWhoScoredId())) == null) {
-                addActionError("Okänd inbytt spelare: " + substitution.getPlayerIn());
-            }
-        }
-    }
+		for (Goal goal : plTeam.getGoals().getGoal()) {
+			if (kandaSpelareMap.get(String.valueOf(goal.getWhoScoredId())) == null) {
+				addActionError("Okänd målgörare: " + goal.getPlayer());
+			}
+		}
+
+		for (Card card : plTeam.getCards().getCard()) {
+			if (kandaSpelareMap.get(String.valueOf(card.getWhoScoredId())) == null) {
+				addActionError("Okänd varnad/utvisad spelare: " + card.getPlayer());
+			}
+		}
+
+		for (Substitution substitution : plTeam.getSubstitutions().getSubstitution()) {
+			if (kandaSpelareMap.get(String.valueOf(substitution.getPlayerOutWhoScoredId())) == null) {
+				addActionError("Okänd utbytt spelare: " + substitution.getPlayerOut());
+			}
+			if (kandaSpelareMap.get(String.valueOf(substitution.getPlayerInWhoScoredId())) == null) {
+				addActionError("Okänd inbytt spelare: " + substitution.getPlayerIn());
+			}
+		}
+	}
 }
