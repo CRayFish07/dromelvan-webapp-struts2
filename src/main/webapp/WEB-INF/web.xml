@@ -23,17 +23,17 @@
 
     <context-param>
         <param-name>applikation.default.sasong_id</param-name>
-        <param-value>11</param-value>
+        <param-value>12</param-value>
     </context-param>
 
     <context-param>
         <param-name>applikation.default.tavling_id</param-name>
-        <param-value>20</param-value>
+        <param-value>22</param-value>
     </context-param>
 
     <context-param>
         <param-name>applikation.default.de_tavling_id</param-name>
-        <param-value>21</param-value>
+        <param-value>23</param-value>
     </context-param>
 
     <context-param>
