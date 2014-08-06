@@ -58,6 +58,10 @@ public class BudHanterare {
             }
             spelareBudList.add(bud);
         }
+
+        for(DeltagareInfo deltagareInfo : deltagareInfoMap.values()) {
+            System.out.println(deltagareInfo);
+        }
     }
 
     public void hantera() {
