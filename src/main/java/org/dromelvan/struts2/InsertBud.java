@@ -130,7 +130,7 @@ public class InsertBud extends DromelvaAdminAction {
         bud.setDeltagare(deltagare);
         bud.setSpelare(spelare);
         bud.setListadSpelare(getDAOFactory().getSpelareDAO().findById(1));
-        bud.setPrioritet(spelareSasongStatistik.getPoang());
+        bud.setPrioritet(spelareSasongStatistik.getPlacering());
         bud.setListadSpelarePrioritet(deltagareSasongStatistik.getPlacering());
         bud.setPris(getPris());
         bud.setAktivtPris(bud.getPris());
