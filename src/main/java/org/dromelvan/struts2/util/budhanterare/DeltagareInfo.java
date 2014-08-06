@@ -66,11 +66,11 @@ public class DeltagareInfo {
         for(Bud bud : getDeltagareBud()) {
             if(lediga == 0 && bud.getSpelare().getPosition().equals(vinnandeBud.getSpelare().getPosition())) {
                 bud.setAktivtPris(0.0);
-                System.out.println(" Bud på " + bud.getSpelare().getNamn() + " nollat då position " + bud.getSpelare().getPosition() + " är full.");
+                System.out.println(" Bud från "+ getDeltagare().getNamn() + " på " + bud.getSpelare().getNamn() + " nollat då position " + bud.getSpelare().getPosition() + " är full.");
             } else if(bud.getAktivtPris() > getMaxBud()) {
                 double oldAktivtPris = bud.getAktivtPris();
                 bud.setAktivtPris(getMaxBud());
-                System.out.println(" Bud på " + bud.getSpelare().getNamn() + " sänktes från " + oldAktivtPris + " till nytt maxbud " + bud.getAktivtPris() + ".");
+                System.out.println(" Bud från "+ getDeltagare().getNamn() + " på " + bud.getSpelare().getNamn() + " sänktes från " + oldAktivtPris + " till nytt maxbud " + bud.getAktivtPris() + ".");
             }
         }
     }
