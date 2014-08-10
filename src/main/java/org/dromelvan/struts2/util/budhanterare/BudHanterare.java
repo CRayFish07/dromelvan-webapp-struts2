@@ -61,6 +61,9 @@ public class BudHanterare {
 
         for(DeltagareInfo deltagareInfo : deltagareInfoMap.values()) {
             System.out.println(deltagareInfo);
+            for(Bud bud : deltagareInfo.getDeltagareBud()) {
+                System.out.println("  Bud på " + bud.getSpelare().getNamn() + ": " + bud.getAktivtPris());
+            }
         }
     }
 
@@ -68,7 +71,7 @@ public class BudHanterare {
         for(Spelare spelare : spelareList) {
             List<Bud> budList = spelareBudMap.get(spelare);
             if(!budList.isEmpty()) {
-                System.out.println("Hanterar bud för: " + spelare.getNamn() + ".");
+                System.out.println("Hanterar bud för: " + spelare.getNamn() + " (Plats " + budList.iterator().next().getPrioritet() + " i poängtabellen).");
 
                 Collections.sort(budList);
 
