@@ -4,7 +4,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" >
 <head>
-    <title>Drömelvan > Information > Regler 2011-2012</title>
+    <title>Drömelvan > Information > Regler 2014-2015</title>
 
     <%@ include file="include/head.jsp" %>
 
@@ -36,11 +36,11 @@
 
             <h2>Information</h2>
 
-            <h3>Regler 2011-12</h3>
+            <h3>Regler 2014-15</h3>
             <p>
                 Regel #1: Då en situation uppstår som inte uttryckligen behandlas
                 i de övriga reglerna men där vi har en praxis eller ett prejudikat från hur vi gjort
-                tidigare, så gäller det som en regel. Mer info om sådant kan hittas på t.ex forumet.
+                tidigare, så gäller det som en regel.
             </p>
             <p>
                 De matcher som ingår i tävlingen är matcherna i engelska Premier League.
