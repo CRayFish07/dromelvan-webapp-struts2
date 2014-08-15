@@ -161,19 +161,19 @@
                     <td class="poanggrund">Rating 9</td>
                     <td>3</td>
                     <td class="poanggrund">2 insläppta mål</td>
-                    <td>OBS! Nyhet: -2</td>
+                    <td>OBS! Nyhet: -1</td>
                 </tr>
                 <tr>
                     <td class="poanggrund">Rating 8</td>
                     <td>2</td>
                     <td class="poanggrund">3 insläppta mål</td>
-                    <td>OBS! Nyhet: -3</td>
+                    <td>OBS! Nyhet: -2</td>
                 </tr>
                 <tr>
                     <td class="poanggrund">Rating 7</td>
                     <td>1</td>
                     <td class="poanggrund">4 insläppta mål</td>
-                    <td>OBS! Nyhet: -4</td>
+                    <td>OBS! Nyhet: -3</td>
                 </tr>
                 <tr>
                     <td class="poanggrund">Ingen rating</td>
