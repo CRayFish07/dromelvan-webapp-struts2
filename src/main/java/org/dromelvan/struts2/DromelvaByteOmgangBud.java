@@ -25,9 +25,9 @@ public class DromelvaByteOmgangBud extends DromelvaByten {
 
     public SortedSet<Bud> getBud() {
         SortedSet<Bud> budSet = new TreeSet<Bud>();
-        Deltagare deltagare = getAnvandare().getDeltagare();
+        Deltagare deltagare = (getAnvandare() != null ? getAnvandare().getDeltagare() : null);
         for(Bud bud : getDeByteOmgang().getBud()) {
-            if(!getAnvandare().isAdministrator() && getDeByteOmgang().getStatus() != 2) {
+            if(getDeByteOmgang().getStatus() != 2 && !getAnvandare().isAdministrator()) {
                 if(deltagare == null || !bud.getDeltagare().equals(deltagare)) {
                     continue;
                 }
