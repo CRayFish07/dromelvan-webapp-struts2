@@ -157,10 +157,10 @@ public class UploadJAXBMatchStatistik extends UploadJAXBAction<PLMatch> {
 			// Därför sätter vi lag från xmlfilen här också
 			spelareMatchStatistik.setLag(lag);
 
-			if (spelareMatchStatistik.getRating() == maxRating) {
+			if (spelareMatchStatistik.getWhoScoredRating() == maxRating) {
 				moms.add(spelareMatchStatistik);
-			} else if (spelareMatchStatistik.getRating() > maxRating) {
-				maxRating = spelareMatchStatistik.getRating();
+			} else if (spelareMatchStatistik.getWhoScoredRating() > maxRating) {
+				maxRating = spelareMatchStatistik.getWhoScoredRating();
 				moms.clear();
 				moms.add(spelareMatchStatistik);
 			}

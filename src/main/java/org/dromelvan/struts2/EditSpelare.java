@@ -41,9 +41,9 @@ public class EditSpelare extends SpelareInputAction {
         Sasong sasong = getDAOFactory().getSasongDAO().findById(getDefaultSasongId());
         SpelareSasong spelareSasong = getDAOFactory().getSpelareSasongDAO().findBySpelareOchSasong(getSpelare(),sasong);
         if(spelareSasong != null) {
-        	setPris(spelareSasong.getPris());
+        	setPris(spelareSasong.getPris() + "");
         } else {
-        	setPris(0.0);
+        	setPris("0.0");
         }
 
         setWorkFlowObject(getSpelare());
@@ -67,8 +67,8 @@ public class EditSpelare extends SpelareInputAction {
 		Sasong sasong = getDAOFactory().getSasongDAO().findById(getDefaultSasongId());
         SpelareSasong spelareSasong = getDAOFactory().getSpelareSasongDAO().findBySpelareOchSasong(spelare,sasong);
 
-        if(getPris() > 50.0)  {
-        	setPris(0.0);
+        if(Double.valueOf(getPris()) > 50.0)  {
+        	setPris("0.0");
         }
 
         double oldPris = 0.0;
@@ -86,7 +86,7 @@ public class EditSpelare extends SpelareInputAction {
     			spelareSasong.setDeltagare(spelare.getDeltagare());
     			spelareSasong.setPosition(spelare.getPosition());
     			// Det här behövs bara vid budgivningen
-    			spelareSasong.setPris(getPris());
+    			spelareSasong.setPris(Double.valueOf(getPris()));
     			getDAOFactory().getSpelareSasongDAO().save(spelareSasong);
             }
 		} else {
@@ -95,7 +95,7 @@ public class EditSpelare extends SpelareInputAction {
 			spelareSasong.setDeltagare(spelare.getDeltagare());
 			spelareSasong.setPosition(spelare.getPosition());
 			// Behövs bara vid budgivningen
-			spelareSasong.setPris(getPris());
+			spelareSasong.setPris(Double.valueOf(getPris()));
             getDAOFactory().getSpelareSasongDAO().save(spelareSasong);
 		}
 
@@ -142,11 +142,11 @@ public class EditSpelare extends SpelareInputAction {
         this.spelareId = spelareId;
     }
 
-    @ConversionErrorFieldValidator(message = "Felaktigt format på pris.")
-	public double getPris() {
-		return pris;
+    //@ConversionErrorFieldValidator(message = "Felaktigt format på pris.")
+	public String getPris() {
+		return pris + "";
 	}
-	public void setPris(double pris) {
-		this.pris = pris;
+	public void setPris(String pris) {
+		this.pris = Double.valueOf(pris);
 	}
 }
