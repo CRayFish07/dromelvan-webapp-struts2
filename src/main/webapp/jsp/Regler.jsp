@@ -119,17 +119,16 @@
                 tävlingens internetsida.
             </p>
             <p>
-                OBS! Nyhet: All matchstatistik inklusive ratings tas från www.whoscored.com. Whoscored.coms rating
+                All matchstatistik inklusive ratings tas från www.whoscored.com. Whoscored.coms rating
                 avrundas till närmsta jämna tal. .5 avrundas uppåt. Om whoscored.com
                 misslyckas med att få upp statistik tas matchstatistik från www.premierleague.com
                 och ratings från www.skysports.com.
             </p>
             <p>
-                Stjärnratingen tilldelas på följande sätt: Om en
-                spelare ensam har högsta ratingen i sitt lag så blir han Man of the Match (MoM).
-                Om två spelare har högsta ratingen i sitt lag blir de delad MoM. Om tre eller
-                flera spelare har högsta ratingen i sitt lag så blir det ingen MoM utmärkelse
-                för någon i laget.
+                <b>OBS Nyhet!</b> 
+                Poäng för man of the match tilldelas på följande sätt: Om en
+                spelare ensam har högsta oavrundade ratingen i sitt lag så blir han Man of the Match (MoM).
+                Om två eller fler spelare har samma högsta oavrundad rating i sitt lag blir alla de spelarna delad MoM.
             </p>
 
             <h4>Virtuella poäng</h4>
@@ -155,25 +154,25 @@
                     <td class="poanggrund">Rating 10</td>
                     <td>5</td>
                     <td class="poanggrund">1 insläppt mål</td>
-                    <td>OBS! Nyhet: 0</td>
+                    <td>0</td>
                 </tr>
                 <tr>
                     <td class="poanggrund">Rating 9</td>
                     <td>3</td>
                     <td class="poanggrund">2 insläppta mål</td>
-                    <td>OBS! Nyhet: -1</td>
+                    <td>-1</td>
                 </tr>
                 <tr>
                     <td class="poanggrund">Rating 8</td>
                     <td>2</td>
                     <td class="poanggrund">3 insläppta mål</td>
-                    <td>OBS! Nyhet: -2</td>
+                    <td>-2</td>
                 </tr>
                 <tr>
                     <td class="poanggrund">Rating 7</td>
                     <td>1</td>
                     <td class="poanggrund">4 insläppta mål</td>
-                    <td>OBS! Nyhet: -3</td>
+                    <td>-3</td>
                 </tr>
                 <tr>
                     <td class="poanggrund">Ingen rating</td>
@@ -274,7 +273,7 @@
             </table>
  
             <p>
-                OBS! Nyhet: Eftersom Whoscored.com startar sina ratings från 6.00 så får spelare poäng för
+                Eftersom Whoscored.com startar sina ratings från 6.00 så får spelare poäng för
                 ratings oberoende av hur många minute de spelat.
             </p>
 
@@ -321,20 +320,20 @@
                     den aktuella spelaren.</li>
             </ul>
 
-            <h4>OBS! Nyhet: Bytessystemet</h4>
+            <h4>Bytessystemet</h4>
             <ul>
                 <li>
                     Transferfönster öppnar i början av månaderna oktober, december, februari och april.
                     Exakta datum meddelas närmare bytestillfället.
                 </li>
                 <li>
-                    OBS! Nyhet: När som helst före transferfönstret öppnar kan du logga in på siten och transferlista spelare.
+                    När som helst före transferfönstret öppnar kan du logga in på siten och transferlista spelare.
                     Spelarna kommer tillsvidare att vara kvar i ditt lag och före transferfönstret stänger kan du kan även ångra 
                     alla transferlistningar du gjort. Endast du själv kan se vilka spelare som finns på din transferlista före
                     transferfönstret öppnar.
                 </li>
                 <li>
-                    OBS! Nyhet: Då transferfönstret öppnar kommer alla spelare du transferlistat att försvinna från ditt lag.
+                    Då transferfönstret öppnar kommer alla spelare du transferlistat att försvinna från ditt lag.
                     Då detta är gjort är det får sent att ångra sig. Se till att inga spelare du vill ha kvar i ditt lag är 
                     transferlistade då deadline för transferlistning passerar!
                 </li>                
@@ -343,7 +342,7 @@
                     För att få behålla en listad spelare måste du alltså vinna budgivningen på honom igen.
                 </li>                
                 <li>
-                    OBS! Nyhet: Då transferfönstret öppnar kommer du att kunna logga in och ge bud på tillgängliga spelare. Tillgängliga
+                    Då transferfönstret öppnar kommer du att kunna logga in och ge bud på tillgängliga spelare. Tillgängliga
                     spelare är de spelare som inte tillhörde någon deltagare före transferfönstret öppnade samt alla transferlistade spelare.
                     Du kan alltså även bjuda på de spelare du själv transferlistat.
                 </li>                
@@ -351,23 +350,23 @@
                     sluta på .0 eller .5. Observera att det högsta bud du kan ge på en spelare måste ta i
                     beaktande att man måste betala minst 0.5 på varje position. Om man har listat tre
                     spelare och har 10.0 att spendera är alltså det högsta budet på en enskild spelare
-                    som kan lyckas 9.0. OBS! Nyhet: Maxbudet kommer att visas på sidan där du skickar in dina bud.</li>                                
+                    som kan lyckas 9.0. Maxbudet kommer att visas på sidan där du skickar in dina bud.</li>                                
                 <li>
-                    OBS! Nyhet: Före deadline för bud passerat kan du ändra och/eller ta bort inskickade bud. Efter att deadline för bud
+                    Före deadline för bud passerat kan du ändra och/eller ta bort inskickade bud. Efter att deadline för bud
                     passerat är det för sent att ändra eller lägga till. Se till att dina bud ser ut som du har tänkt före deadline för
                     bud passeras.
                 </li>                                
                 <li>
-                    OBS! Nyhet: Alla bud läggs i en hög och om man t.ex behöver två mittfältare så får du de två första mittfältarna
+                    Alla bud läggs i en hög och om man t.ex behöver två mittfältare så får du de två första mittfältarna
                     du först lyckas få lyckade bud på.
                 </li>                
                 <li>
-                    OBS! Nyhet: Du får bara lägga ett bud på varje spelare. Detta bud är ett "upp till" bud, dvs maxbudet du vill ge för spelaren. 
+                    Du får bara lägga ett bud på varje spelare. Detta bud är ett "upp till" bud, dvs maxbudet du vill ge för spelaren. 
                     Om du har det högsta budet blir summan du till slut får betala 0.5 högre än det näst högsta budet. Ex: Deltagare A bjuder 15.0 för 
                     spelare S. Det näst högsta budet är deltagare B som bjuder 10.0. Deltagare A får spelare S för 10.5.                    
                 </li>
                 <li>
-                    OBS! Nyhet: Spelarna "bjuds ut" i poängordning. Den tillgängliga spelare som har mest poäng på buddagen går som första spelare 
+                    Spelarna "bjuds ut" i poängordning. Den tillgängliga spelare som har mest poäng på buddagen går som första spelare 
                     till den deltagare som hade högsta budet på honom. Sedan går den spelaren som hade näst mest poäng till den deltagare som hade 
                     högsta budet på honom, osv, osv. Om två spelare har lika många poäng bjuds de ut i bokstavsordning. Listan på tillgängliga spelare
                     för varje transferfönster är sorterad enligt den ordning spelarna kommer att bjudas ut.
@@ -376,7 +375,7 @@
                     Om budet är lika får den deltagare som ligger sämre till i
                     tävlingen spelaren.</li>                
                 <li>
-                    OBS! Nyhet: Pengar som spenderats på lyckade bud tas bort från bud som inte hanteras än. Ex: Deltagare A har 15.0 som maxbud och 
+                    Pengar som spenderats på lyckade bud tas bort från bud som inte hanteras än. Ex: Deltagare A har 15.0 som maxbud och 
                     bjuder 15.0 på spelare S och 15.0 på spelare P. Spelare S har mer poäng än spelare P och går först och deltagare A får honom för 10.5. 
                     Efter det är deltagare As maxbud 4.5, så budet på spelare P justeras ner till 4.5.
                 </li>
