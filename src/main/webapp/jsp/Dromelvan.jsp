@@ -147,13 +147,17 @@
                     </tr>
                     <struts:iterator value="deMatcher">
                     <tr>
-                        <td class="lag"><struts:push value="hemmaDeltagare">
+                        <td class="lag">
+                            <struts:push value="hemmaDeltagare">
                             <%@ include file="include/deltagare_lank.jsp" %>
-                        </td></struts:push>
+                            </struts:push>
+                        </td>
                         <td>-</td>
-                        <td class="lag"><struts:push value="bortaDeltagare">
+                        <td class="lag">
+                            <struts:push value="bortaDeltagare">
                             <%@ include file="include/deltagare_lank.jsp" %>
-                        </td></struts:push>
+                            </struts:push>
+                        </td>
                         <td>
                             <struts:if test="omgang.isSpelad">
                             <struts:url var="url" action="DromelvaMatchStatistik">
