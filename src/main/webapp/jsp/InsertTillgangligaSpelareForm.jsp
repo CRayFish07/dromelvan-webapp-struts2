@@ -86,7 +86,7 @@
                 <tr>
                     <td class="spelare">
                         <struts:push value="tillgangligSpelare.spelare">
-                        <%@ include file="include/spelare_lank.jsp" %> <struts:if test="tillgangligSpelare.ny"><img src="bilder/ny.gif"></struts:if>
+                        <%@ include file="include/spelare_lank.jsp" %> <struts:if test="tillgangligSpelare.ny"><img src="bilder/ny.gif"/></struts:if>
                         </struts:push>
                     </td>
                     <struts:push value="spelareSasongStatistik">

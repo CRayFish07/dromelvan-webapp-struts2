@@ -24,7 +24,6 @@
             <h3>Matcher</h3>
             <h4 class="top">Omgångar</h4>
             <ul>
-            <ul>
                 <struts:url var="url" action="Dromelvan">
                     <struts:param name="tavlingId" value="tavling.id"/>
                     <struts:param name="startOmgang" value="1"/>                    

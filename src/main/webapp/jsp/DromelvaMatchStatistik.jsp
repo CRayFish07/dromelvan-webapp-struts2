@@ -132,7 +132,7 @@
                             <%@ include file="include/spelare_lank.jsp" %>
                             </struts:push>
                         </td>
-                        <td><struts:property value="position.kod"/>
+                        <td><struts:property value="position.kod"/></td>
                         <td>
                             <struts:url var="url" action="LagSpelarTrupp">
                                 <struts:param name="lagId" value="match.hemmaLag.id"/>

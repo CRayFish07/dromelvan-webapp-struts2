@@ -98,8 +98,8 @@
                         <struts:submit value="Lägg in"/>
                         <struts:submit method="cancel" value="Avbryt"/>
                     </p>
-                </div>                
-            </form>    
+                </form>                    
+            </div>                               
         </div>
 
         <%@ include file="include/footer.jsp" %>
